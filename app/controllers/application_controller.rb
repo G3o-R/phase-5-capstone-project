@@ -4,6 +4,8 @@ class ApplicationController < ActionController::API
 
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found_response
 
+    rescue_from ActiveRecord::RecordInvalidm with: :render_unprocessable_entity_response
+
     private
     def authorize
         @current_user = User.find_by(id: session[:user_id])
@@ -13,5 +15,9 @@ class ApplicationController < ActionController::API
     def record_not_found_response
         model_name = controller_name.classify
         render json: { errors: "#{model_name} not found" }, status: :not_found
-      end
+    end
+
+    def render_unprocessable_entity_response(invalid)
+        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    end
 end
