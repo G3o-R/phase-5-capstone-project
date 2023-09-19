@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_175920) do
     t.bigint "comment_id", null: false
     t.bigint "user_id", null: false
     t.string "reply"
+    t.integer "likes", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_comment_replies_on_comment_id"
@@ -28,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_17_175920) do
     t.bigint "post_id", null: false
     t.bigint "user_id", null: false
     t.string "comment"
+    t.integer "likes", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
