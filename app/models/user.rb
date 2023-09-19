@@ -1,8 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
-  
     has_many :posts
     has_many :comments, through: :posts
+    has_many :comment_replies
   
     validates :email, presence: true, uniqueness: { message: "An account with this email already exists" }, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
     validates :username, presence: true, uniqueness: true
