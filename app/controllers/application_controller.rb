@@ -11,6 +11,7 @@ class ApplicationController < ActionController::API
     end
 
     def record_not_found_response
-        render json: {errors: "model not found"}, status: :not_found
-    end
+        model_name = controller_name.classify
+        render json: { errors: "#{model_name} not found" }, status: :not_found
+      end
 end
