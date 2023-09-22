@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # resources :comment_replies
-  # resources :comments
+  resources :comments
   resources :posts
   resources :users
 
