@@ -103,6 +103,41 @@ puts "------------------seeding data"
     )
   end
 
+  user2.posts.each do |post|
+    random_user_id = User.pluck(:id).sample
+    comment_samples = ["lol", "that's so me!", "oof", "real", "but how does effect the economy?"]
+    post.comments.create!(
+      user_id: random_user_id,
+      comment: comment_samples.sample
+    )
+  end
+
+  user3.posts.each do |post|
+    random_user_id = User.pluck(:id).sample
+    comment_samples = ["lol", "that's so me!", "oof", "real", "but how does effect the economy?"]
+    post.comments.create!(
+      user_id: random_user_id,
+      comment: comment_samples.sample
+    )
+  end
+
+  user4.posts.each do |post|
+    random_user_id = User.pluck(:id).sample
+    comment_samples = ["lol", "that's so me!", "oof", "real", "but how does effect the economy?"]
+    post.comments.create!(
+      user_id: random_user_id,
+      comment: comment_samples.sample
+    )
+  end
+
+  user5.posts.each do |post|
+    random_user_id = User.pluck(:id).sample
+    comment_samples = ["lol", "that's so me!", "oof", "real", "but how does effect the economy?"]
+    post.comments.create!(
+      user_id: random_user_id,
+      comment: comment_samples.sample
+    )
+  end
 
   
 
