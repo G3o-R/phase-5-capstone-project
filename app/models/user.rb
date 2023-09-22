@@ -1,7 +1,9 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :posts
-    has_many :comments, through: :posts
+    # has_many :requesting_meetings, class_name: "Meeting", foreign_key: "requester_id"
+    has_many :my_posts, class_name: "Post", foreign_key: "user_id"
+    has_many :comments
+    has_many :posts, through: :comments
     has_many :comment_replies
   
     validates :email, presence: true, uniqueness: { message: "An account with this email already exists" }, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }

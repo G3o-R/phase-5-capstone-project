@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    skip_before_action :authorize, only: [:index, :create]
+    skip_before_action :authorize, only: [:index, :create, :update]
     # don't forget to delete index method in comments controller users
     # can read comments as nested data for posts
     # same for comment_replies
@@ -8,15 +8,25 @@ class CommentsController < ApplicationController
     end
 
     def create 
-        # comment = User.comments.create!(comment_params)
-        comment = Comment.create!(comment_params)
+        comment = @current_user.comments.create!(comment_params)
         render json: comment, status: :created
+    end
+
+    def update
+        comment = @current_user.comments.update!(comment_params)
+        render json: comment
+    end
+
+    def delete 
+        comment = @current_user.comments.find(params[:id])
+        comment.destroy
+        head :no_content
     end
 
     private
 
     def comment_params
         # don't forget to delete :user_id from prarams this is just for postman
-        params.permit(:post_id, :comment, :user_id)
+        params.permit(:post_id, :comment)
     end
 end
