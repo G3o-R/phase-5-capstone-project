@@ -12,6 +12,12 @@ class PostsController < ApplicationController
         render json: posts #, ['comments', 'comments.comment_replies']
     end
 
+    def update 
+        post = @current_user.posts.find(params[:id])
+        post.update!(post_params)
+        render json: post
+    end
+
     def destroy
         post = @current_user.posts.find(params[:id])
         post.destroy
