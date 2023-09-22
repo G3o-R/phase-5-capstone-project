@@ -8,7 +8,14 @@ class PostsController < ApplicationController
 
     def index
         posts = Post.all
+        # need to work on getting comment replies 
         render json: posts #, ['comments', 'comments.comment_replies']
+    end
+
+    def destroy
+        post = @current_user.posts.find(params[:id])
+        post.destroy
+        head :no_content
     end
 
     private 
