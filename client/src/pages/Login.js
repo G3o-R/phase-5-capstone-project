@@ -1,13 +1,18 @@
+// Login.js
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   LoginPage,
+  ContainerWrapper,
   FormContainer,
   LoginForm,
   Title,
   FormGroup,
   Input,
   SubmitButton,
-} from "../styles/LoginStyles"
+  SignUpContainer,
+  SignUpLink,
+} from "../styles/LoginStyles";
 
 function Login() {
   const [loginData, setLoginData] = useState({
@@ -30,6 +35,7 @@ function Login() {
 
   return (
     <LoginPage>
+    <ContainerWrapper>
       <FormContainer>
         <LoginForm onSubmit={handleLoginSubmit}>
           <Title>Login</Title>
@@ -53,9 +59,15 @@ function Login() {
               onChange={handleChange}
             />
           </FormGroup>
-          <SubmitButton type="submit">Login</SubmitButton>
+          <SubmitButton type="submit">Log in</SubmitButton>
         </LoginForm>
       </FormContainer>
+      <SignUpContainer>
+        <span style={{paddingTop: 0}}>
+          Don't have an account? <SignUpLink to="/sign-up">Sign up</SignUpLink>
+        </span>
+      </SignUpContainer>
+        </ContainerWrapper>
     </LoginPage>
   );
 }
