@@ -1,35 +1,63 @@
-import { useState } from "react"
+import React, { useState } from "react";
+import {
+  LoginPage,
+  FormContainer,
+  LoginForm,
+  Title,
+  FormGroup,
+  Input,
+  SubmitButton,
+} from "../styles/LoginStyles"
 
-function Login(){
-    const [loginData, setLoginData] = useState({
-        username: "",
-        password: ""
-    })
-    const {username, password} = loginData
+function Login() {
+  const [loginData, setLoginData] = useState({
+    username: "",
+    password: "",
+  });
 
-    function handleChange(e){
-        let name = e.target.name
-        let value = e.target.value
-        setLoginData({...loginData,[name]: value})
-    }
+  const { username, password } = loginData;
 
-    function handleLoginSubmit(e){
-        e.preventDefault()
-        console.log(loginData)
-    }
-    return(
-        <div className="login-page">
-            <div className="login-container">
-                <form className="login-form" onSubmit={handleLoginSubmit}>
-                    <label>Username</label>
-                    <input type="text" name="username" value={username} placeholder="Username..." onChange={handleChange} />
-                    <label>Password</label>               
-                    <input type="text" name="password" value={password} placeholder="Password..." onChange={handleChange} />
-                    <button type="submit">login</button>                
-                </form>
-            </div>
-        </div>
-    )
+  function handleChange(e) {
+    let name = e.target.name;
+    let value = e.target.value;
+    setLoginData({ ...loginData, [name]: value });
+  }
+
+  function handleLoginSubmit(e) {
+    e.preventDefault();
+    console.log(loginData);
+  }
+
+  return (
+    <LoginPage>
+      <FormContainer>
+        <LoginForm onSubmit={handleLoginSubmit}>
+          <Title>Login</Title>
+          <FormGroup>
+            <Input
+              type="text"
+              id="username"
+              name="username"
+              value={username}
+              placeholder="Username..."
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              placeholder="Password..."
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <SubmitButton type="submit">Login</SubmitButton>
+        </LoginForm>
+      </FormContainer>
+    </LoginPage>
+  );
 }
 
-export default Login
+export default Login;
