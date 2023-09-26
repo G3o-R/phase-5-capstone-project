@@ -30,6 +30,8 @@ function Login() {
 
   function handleLoginSubmit(e) {
     e.preventDefault();
+    console.log(loginData)
+
   }
 
   return (
