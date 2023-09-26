@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
 
+  post "/login", to: "sessions#create"
+
   # route "/", to: "user#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

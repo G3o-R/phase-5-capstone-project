@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -14,7 +13,14 @@ import {
   SignUpLink,
 } from "../styles/LoginStyles";
 
+import { useDispatch, useSelector } from "react-redux";
+import loginUserSlice, { loginUser } from "../redux/features/loginUserSlice";
+
+
 function Login() {
+  const dispatch = useDispatch()
+  const {user, loading} = useSelector((state)=>state.user)
+
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -30,9 +36,11 @@ function Login() {
 
   function handleLoginSubmit(e) {
     e.preventDefault();
-    console.log(loginData)
+    dispatch(loginUser(loginData))
 
   }
+
+  console.log(user)
 
   return (
     <LoginPage>
