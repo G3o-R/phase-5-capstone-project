@@ -30,7 +30,6 @@ function Login() {
 
   function handleLoginSubmit(e) {
     e.preventDefault();
-    console.log(loginData);
   }
 
   return (
@@ -38,7 +37,7 @@ function Login() {
     <ContainerWrapper>
       <FormContainer>
         <LoginForm onSubmit={handleLoginSubmit}>
-          <Title>Login</Title>
+          <Title>CodeGram</Title>
           <FormGroup>
             <Input
               type="text"
@@ -63,7 +62,7 @@ function Login() {
         </LoginForm>
       </FormContainer>
       <SignUpContainer>
-        <span style={{paddingTop: 0}}>
+        <span>
           Don't have an account? <SignUpLink to="/sign-up">Sign up</SignUpLink>
         </span>
       </SignUpContainer>
