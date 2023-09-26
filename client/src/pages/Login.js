@@ -14,7 +14,7 @@ import {
 } from "../styles/LoginStyles";
 
 import { useDispatch, useSelector } from "react-redux";
-import loginUserSlice, { loginUser } from "../redux/features/loginUserSlice";
+import { loginUser } from "../redux/features/userSlice";
 
 
 function Login() {
@@ -39,8 +39,6 @@ function Login() {
     dispatch(loginUser(loginData))
 
   }
-
-  console.log(user)
 
   return (
     <LoginPage>

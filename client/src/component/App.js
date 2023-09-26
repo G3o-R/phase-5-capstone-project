@@ -9,19 +9,19 @@ import { getAllUsers } from '../redux/features/allUsersSlice';
 function App() {
   const dispatch = useDispatch()
   const {allUsers, loading} = useSelector((state)=>state.allUsers)
+  const {user} = useSelector((state)=>state.user)
   useEffect(()=>{
     dispatch(getAllUsers())
   },[])
 
-  // console.log(allUsers)
+  console.log(user)
 
-  
   return (
     <div className="App">
       <BrowserRouter>
       {/* <NavBar /> */}
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/home" element={<Home />} />
         <Route path="/login" element={<Login />}/>
       </Routes>
       

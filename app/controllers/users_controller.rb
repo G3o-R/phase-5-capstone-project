@@ -13,8 +13,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        user = User.find(params[:id])
-        render json: user, include: ['posts','posts.comments']
+        render json: @current_user, include: ['posts','posts.comments']
     end
 
     def update

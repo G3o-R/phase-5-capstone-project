@@ -1,11 +1,11 @@
 //store.js
 import { configureStore } from "@reduxjs/toolkit";
 import allUsersReducer from "./features/allUsersSlice";
-import loginUserReducer from "./features/loginUserSlice"
+import userReducer from "./features/userSlice"
 
 export  default configureStore({
     reducer: {
         allUsers: allUsersReducer,
-        user: loginUserReducer
+        user: userReducer
     }
 })

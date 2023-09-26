@@ -1,6 +1,7 @@
 //loginUserSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+// handles logging in. creates a session
 export const loginUser = createAsyncThunk("user/loginUser", async (loginData, thunkAPI) => {
     try {
         const response = await fetch("/login", {
@@ -23,7 +24,10 @@ export const loginUser = createAsyncThunk("user/loginUser", async (loginData, th
     }
 });
 
-const loginUserSlice = createSlice({
+// handles getting a session if session[:user_id] already exists
+const getMe = createAsyncThunk()
+
+const userSlice = createSlice({
     name: "user",
     initialState: {
         user: null,
@@ -52,4 +56,4 @@ const loginUserSlice = createSlice({
     }
 })
 
-export default loginUserSlice.reducer;
+export default userSlice.reducer;
