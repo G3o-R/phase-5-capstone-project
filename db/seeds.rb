@@ -39,7 +39,7 @@ puts "------------------seeding data"
     email: 'user5@example.com'
   })
 
-  g3or.posts.create!([
+  g3or.my_posts.create!([
     {
       image: "https://i.redd.it/n4ajwi0kexob1.jpg",
       description:"mwahahahhahahahahahahha"
@@ -58,7 +58,7 @@ puts "------------------seeding data"
     },
   ])
 
-  user2.posts.create!([
+  user2.my_posts.create!([
     {
       image: "https://example.com/image1.jpg",
       description: "This is my first post"
@@ -69,14 +69,14 @@ puts "------------------seeding data"
     }
   ])
   
-  user3.posts.create!([
+  user3.my_posts.create!([
     {
       image: "https://example.com/image3.jpg",
       description: "Just a random picture"
     }
   ])
   
-  user4.posts.create!([
+  user4.my_posts.create!([
     {
       image: "https://example.com/image4.jpg",
       description: "Nature at its best"
@@ -87,14 +87,14 @@ puts "------------------seeding data"
     }
   ])
   
-  user5.posts.create!([
+  user5.my_posts.create!([
     {
       image: "https://example.com/image6.jpg",
       description: "Travel memories"
     }
   ])
 
-  g3or.posts.each do |post|
+  g3or.my_posts.each do |post|
     random_user_id = User.pluck(:id).sample
     comment_samples = ["lol", "that's so me!", "oof", "real", "but how does effect the economy?"]
     post.comments.create!(
@@ -103,7 +103,7 @@ puts "------------------seeding data"
     )
   end
 
-  user2.posts.each do |post|
+  user2.my_posts.each do |post|
     random_user_id = User.pluck(:id).sample
     comment_samples = ["lol", "that's so me!", "oof", "real", "but how does effect the economy?"]
     post.comments.create!(
@@ -112,7 +112,7 @@ puts "------------------seeding data"
     )
   end
 
-  user3.posts.each do |post|
+  user3.my_posts.each do |post|
     random_user_id = User.pluck(:id).sample
     comment_samples = ["lol", "that's so me!", "oof", "real", "but how does effect the economy?"]
     post.comments.create!(
@@ -121,7 +121,7 @@ puts "------------------seeding data"
     )
   end
 
-  user4.posts.each do |post|
+  user4.my_posts.each do |post|
     random_user_id = User.pluck(:id).sample
     comment_samples = ["lol", "that's so me!", "oof", "real", "but how does effect the economy?"]
     post.comments.create!(
@@ -130,7 +130,7 @@ puts "------------------seeding data"
     )
   end
 
-  user5.posts.each do |post|
+  user5.my_posts.each do |post|
     random_user_id = User.pluck(:id).sample
     comment_samples = ["lol", "that's so me!", "oof", "real", "but how does effect the economy?"]
     post.comments.create!(
