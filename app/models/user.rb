@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :requesting_meetings, class_name: "Meeting", foreign_key: "requester_id"
-    has_many :my_posts, class_name: "Post", foreign_key: "user_id"
+    has_many :user_posts, class_name: "Post", foreign_key: "user_id"
     has_many :comments
     has_many :posts, through: :comments
     has_many :comment_replies
