@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   LoginPage,
   ContainerWrapper,
@@ -19,6 +19,7 @@ import { loginUser } from "../redux/features/userSlice";
 
 function Login() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const {user, loading} = useSelector((state)=>state.user)
 
   const [loginData, setLoginData] = useState({
@@ -37,9 +38,9 @@ function Login() {
   function handleLoginSubmit(e) {
     e.preventDefault();
     dispatch(loginUser(loginData))
-
+    
   }
-
+  
   return (
     <LoginPage>
     <ContainerWrapper>
