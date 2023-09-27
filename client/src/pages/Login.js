@@ -38,6 +38,10 @@ function Login() {
   function handleLoginSubmit(e) {
     e.preventDefault();
     dispatch(loginUser(loginData))
+    setLoginData({
+      username: "",
+      password: "",
+    });
     
   }
   
