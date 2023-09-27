@@ -25,7 +25,11 @@ export const loginUser = createAsyncThunk("user/loginUser", async (loginData, th
 });
 
 // handles getting a session if session[:user_id] already exists
-const getMe = createAsyncThunk()
+export const getMe = createAsyncThunk("user/getMe", async ()=>{
+    return fetch("/me").then((res)=>
+        res.json()
+    );
+});
 
 const userSlice = createSlice({
     name: "user",
@@ -52,6 +56,14 @@ const userSlice = createSlice({
             state.loading = false;
             state.user = null;
             state.error = action.payload
+        })
+        .addCase(getMe.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(getMe.fulfilled, (state, action) => {
+            state.loading = false;
+            state.user = action.payload
         })
     }
 })
