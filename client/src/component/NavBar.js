@@ -1,11 +1,15 @@
 import { NavLink } from "react-router-dom"
-import { useSelector } from "react-redux/es/hooks/useSelector"
-
+import { useDispatch, useSelector } from "react-redux"
+import { logOutUser } from "../redux/features/userSlice"
 function NavBar(){
+    const dispatch = useDispatch()
     const {user} = useSelector((state)=>state.user)
+    console.log(user)
+
     function handleLogOut(){
-        console.log(` logging out ${user.username}`)
+        dispatch(logOutUser())
     }
+
     return (
         <div name="nav-bar" style={
             {display: "flex",

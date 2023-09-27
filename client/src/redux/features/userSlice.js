@@ -24,6 +24,13 @@ export const loginUser = createAsyncThunk("user/loginUser", async (loginData, th
     }
 });
 
+// handles loggin out. Deletes a session
+export const logOutUser = createAsyncThunk("user/logOutUser", async ()=>{
+    return fetch ("/logout", {
+        method: "delete",
+    })
+})
+
 // handles getting a session if session[:user_id] already exists
 export const getMe = createAsyncThunk("user/getMe", async ()=>{
     return fetch("/me").then((res)=>
@@ -57,13 +64,21 @@ const userSlice = createSlice({
             state.user = null;
             state.error = action.payload
         })
+        .addCase(logOutUser.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(logOutUser.fulfilled, (state) => {
+            state.loading = false;
+            state.user = null
+        })
         .addCase(getMe.pending, (state) => {
             state.loading = true;
             state.error = null;
         })
         .addCase(getMe.fulfilled, (state, action) => {
             state.loading = false;
-            state.user = action.payload
+            // state.user = action.payload
         })
     }
 })
