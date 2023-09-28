@@ -46,8 +46,11 @@ export const signUpUser = createAsyncThunk("user/signUpUser", async (signUpData)
 
 // handles getting a session if session[:user_id] already exists
 export const getMe = createAsyncThunk("user/getMe", async ()=>{
-    return fetch("/me").then((res)=>
-        res.json()
+    return fetch("/me").then((res)=>{
+            if (res.ok()) {
+                return res.json()
+            }
+        }
     );
 });
 
@@ -91,7 +94,11 @@ const userSlice = createSlice({
         })
         .addCase(getMe.fulfilled, (state, action) => {
             state.loading = false;
-            // state.user = action.payload
+            state.user = action.payload
+        })
+        .addCase(getMe.rejected, (state) => {
+            state.loading = false;
+            state.user = null
         })
         .addCase(signUpUser.pending, (state, action)=> {
             state.loading = true;

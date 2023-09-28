@@ -4,6 +4,7 @@ import { logOutUser } from "../redux/features/userSlice"
 function NavBar(){
     const dispatch = useDispatch()
     const {user} = useSelector((state)=>state.user)
+    console.log(user)
 
     function handleLogOut(){
         dispatch(logOutUser())

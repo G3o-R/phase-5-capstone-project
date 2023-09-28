@@ -21,6 +21,7 @@ function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const {user, loading, error} = useSelector((state)=>state.user)
+  console.log(user)
 
   const [loginData, setLoginData] = useState({
     username: "",
@@ -44,7 +45,6 @@ function Login() {
     });
     
   }
-  console.log(error)
   
   return (
     <LoginPage>
