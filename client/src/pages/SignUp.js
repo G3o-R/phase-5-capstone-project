@@ -12,8 +12,14 @@ import {
   LoginContainer, // Import LoginContainer
 } from "../styles/SignUpStyles.js";
 
+import { useDispatch, useSelector } from "react-redux";
+import { signUpUser } from "../redux/features/userSlice.js";
+
 function SignUp() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {user, loading, error } = useSelector((state)=>state.user)
+
   const [signupData, setSignupData] = useState({
     username: "",
     email: "",
@@ -26,14 +32,16 @@ function SignUp() {
   function handleChange(e) {
     let name = e.target.name;
     let value = e.target.value;
-
     setSignupData({ ...signupData, [name]: value });
   }
-
+// 0mgChipotle!1
   function handleSignUpSubmit(e) {
     e.preventDefault();
-    console.log(signupData);
+    dispatch(signUpUser(signupData))
+    // figure out how to recieve errors adjust slice on redux
+    console.log(error)
   }
+
 
   return (
     <SignUpPage>

@@ -31,6 +31,19 @@ export const logOutUser = createAsyncThunk("user/logOutUser", async ()=>{
     })
 })
 
+// handles creating an account also creates a session
+export const signUpUser = createAsyncThunk("user/signUpUser", async (signUpData) => {
+    return fetch("/signup",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(signUpData)
+    }).then((res) => 
+        res.json()
+    )
+})
+
 // handles getting a session if session[:user_id] already exists
 export const getMe = createAsyncThunk("user/getMe", async ()=>{
     return fetch("/me").then((res)=>
@@ -79,6 +92,20 @@ const userSlice = createSlice({
         .addCase(getMe.fulfilled, (state, action) => {
             state.loading = false;
             // state.user = action.payload
+        })
+        .addCase(signUpUser.pending, (state, action)=> {
+            state.loading = true;
+            state.error = false;
+        })
+        .addCase(signUpUser.fulfilled, (state, action) => {
+            state.loading = false;
+            state.user = action.payload;
+            state.error = null
+        })
+        .addCase(signUpUser.rejected, (state, action) => {
+            state.loading = false;
+            state.user = null;
+            state.error = action.payload;
         })
     }
 })

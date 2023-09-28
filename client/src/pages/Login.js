@@ -20,7 +20,7 @@ import { loginUser } from "../redux/features/userSlice";
 function Login() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const {user, loading} = useSelector((state)=>state.user)
+  const {user, loading, error} = useSelector((state)=>state.user)
 
   const [loginData, setLoginData] = useState({
     username: "",
@@ -44,6 +44,7 @@ function Login() {
     });
     
   }
+  console.log(error)
   
   return (
     <LoginPage>
