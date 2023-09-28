@@ -23,7 +23,7 @@ export const FormContainer = styled.div`
   flex-grow: 1;
   padding: 20px;
   border: 1px solid #dbdbdb;
-  border-radius: 0;
+  border-radius: 4px;
   max-width: 350px;
   aspect-ratio: 7/9;
   margin: 0 auto;

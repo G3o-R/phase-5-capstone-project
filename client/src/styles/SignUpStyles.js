@@ -11,14 +11,20 @@ export const SignUpPage = styled.div`
 
 export const SignUpContainer = styled.div`
   /* Add styles for the sign-up container here */
+  display: flex;
+  flex-direction: column ;
+  aspect-ratio: 1/2;
+  max-width: 350px ;
+  flex-grow:1;
   background-color: #ffffff;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  border: 1px solid #dbdbdb;
 `;
 
 export const Title = styled.h1`
   /* Add styles for the title here */
+  margin-top: 100px;
   text-align: center;
   color: #333;
   font-size: 24px;
@@ -37,18 +43,19 @@ export const InputField = styled.input`
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: #f7f7f7;
 `;
 
 export const SignUpButton = styled.button`
-  /* Add styles for the sign-up button here */
-  background-color: #007bff;
-  color: #fff;
+  width: 100%;
   padding: 10px;
+  background-color: #4CB5F9;
+  color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #3385ff;
   }
 `;
