@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  ContainerWrapper,
   SignUpPage,
   SignUpContainer,
   Title,
   Form,
   InputField,
   SignUpButton,
-} from "../styles/SignUpStyles.js"; // Import styles from SignUpStyles.js
+  LoginLink,
+  LoginContainer, // Import LoginContainer
+} from "../styles/SignUpStyles.js";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -34,40 +37,48 @@ function SignUp() {
 
   return (
     <SignUpPage>
-      <SignUpContainer>
-        <Title>CodeGram</Title>
-        <Form onSubmit={handleSignUpSubmit}>
-          <InputField
-            type="text"
-            name="username"
-            value={username}
-            placeholder="Username"
-            onChange={handleChange}
-          />
-          <InputField
-            type="text"
-            name="email"
-            value={email}
-            placeholder="Email"
-            onChange={handleChange}
-          />
-          <InputField
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Password"
-            onChange={handleChange}
-          />
-          <InputField
-            type="password"
-            name="password_confirmation"
-            value={password_confirmation}
-            placeholder="Confirm Password"
-            onChange={handleChange}
-          />
-          <SignUpButton type="submit">Sign Up</SignUpButton>
-        </Form>
-      </SignUpContainer>
+      <ContainerWrapper>
+        <SignUpContainer>
+          <Title>CodeGram</Title>
+          <Form onSubmit={handleSignUpSubmit}>
+            <InputField
+              type="text"
+              name="username"
+              value={username}
+              placeholder="Username"
+              onChange={handleChange}
+            />
+            <InputField
+              type="text"
+              name="email"
+              value={email}
+              placeholder="Email"
+              onChange={handleChange}
+            />
+            <InputField
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Password"
+              onChange={handleChange}
+            />
+            <InputField
+              type="password"
+              name="password_confirmation"
+              value={password_confirmation}
+              placeholder="Confirm Password"
+              onChange={handleChange}
+            />
+            <SignUpButton type="submit">Sign Up</SignUpButton>
+          </Form>
+        </SignUpContainer>
+
+        <LoginContainer>
+          <span>
+            Have an Account? <LoginLink to="/login">Log In</LoginLink>
+          </span>
+        </LoginContainer>
+      </ContainerWrapper>
     </SignUpPage>
   );
 }

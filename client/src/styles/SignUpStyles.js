@@ -1,16 +1,19 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const SignUpPage = styled.div`
-  /* Add styles for the entire sign-up page here */
-  background-color: #f0f0f0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 `;
 
+export const ContainerWrapper = styled.div`
+  height:100%;
+  padding-top:6rem;
+`;
+
 export const SignUpContainer = styled.div`
-  /* Add styles for the sign-up container here */
   display: flex;
   flex-direction: column ;
   aspect-ratio: 1/2;
@@ -22,8 +25,23 @@ export const SignUpContainer = styled.div`
   border: 1px solid #dbdbdb;
 `;
 
+export const LoginContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #dbdbdb;
+  border-radius: 0;
+  width: 350px;
+  aspect-ratio: 8/1;
+  margin: 10px auto;
+  padding-top: 1px;
+  padding-bottom: 1px;
+`;
+
 export const Title = styled.h1`
-  /* Add styles for the title here */
   margin-top: 100px;
   text-align: center;
   color: #333;
@@ -32,24 +50,25 @@ export const Title = styled.h1`
 `;
 
 export const Form = styled.form`
-  /* Add styles for the form here */
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  width: 90%;
+  padding-right:15px;
+  margin: 0 auto;
 `;
 
 export const InputField = styled.input`
-  /* Add styles for the input fields here */
+  width: 100%;
   padding: 10px;
+  margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #f7f7f7;
 `;
 
 export const SignUpButton = styled.button`
-  width: 100%;
+  margin-top: 5px;
+  width: 107%;
   padding: 10px;
-  background-color: #4CB5F9;
+  background-color: #4cb5f9;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -58,4 +77,10 @@ export const SignUpButton = styled.button`
   &:hover {
     background-color: #3385ff;
   }
+`;
+
+export const LoginLink = styled(Link)`
+  color: #007bff;
+  text-decoration: none;
+  margin-top: 0;
 `;
