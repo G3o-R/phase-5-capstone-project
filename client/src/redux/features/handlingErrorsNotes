@@ -1,0 +1,22 @@
+// export const loginUser = createAsyncThunk("user/loginUser", async (loginData, thunkAPI) => {
+//         const response = await fetch("/login", {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify(loginData)
+//         }).then((res) => {
+//             if (res.ok) {
+//                 res.json().then((user)=> user)
+//             } else {
+//                 res.json().then((err)=>err.errors)
+//             }
+//         })
+
+//         // if (!response.ok) {
+//         //     const errorMessage = await response.text()
+//         //     return thunkAPI.rejectWithValue(errorMessage)
+//         // }
+
+//         return response
+// });

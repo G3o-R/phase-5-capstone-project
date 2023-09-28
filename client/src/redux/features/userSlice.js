@@ -10,15 +10,17 @@ export const loginUser = createAsyncThunk("user/loginUser", async (loginData, th
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(loginData)
-        });
+        })
 
         if (!response.ok) {
-            const errorMessage = await response.text()
-            return thunkAPI.rejectWithValue(errorMessage)
+            const errorMessage = await response.json()
+            // console.log(errorMessage.errors)
+            return thunkAPI.rejectWithValue(errorMessage.errors)
         }
 
-        const userData = await response.json()
-        return userData
+        // const userData = await response.json()
+        // return userData
+        return response
     } catch (error){
         return thunkAPI.rejectWithValue("An error occurred while logging in.")
     }

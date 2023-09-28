@@ -44,8 +44,7 @@ function Login() {
     });
     
   }
-  console.log(error)
-  
+console.log(error)
   return (
     <LoginPage>
     <ContainerWrapper>
