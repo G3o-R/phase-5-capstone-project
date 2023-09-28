@@ -68,13 +68,14 @@ const userSlice = createSlice({
         builder
         .addCase(loginUser.pending, (state) => {
             state.loading = true;
-            state.error = null;
+            state.error = [];
         })
         .addCase(loginUser.fulfilled, (state, action) => {
             state.loading = false;
             state.user = action.payload;
-            state.error = null
+            state.error = [];
         })
+        // where is the payload for errors coming from
         .addCase(loginUser.rejected, (state, action) => {
             state.loading = false;
             state.user = null;
@@ -82,7 +83,7 @@ const userSlice = createSlice({
         })
         .addCase(logOutUser.pending, (state) => {
             state.loading = true;
-            state.error = null;
+            state.error = [];
         })
         .addCase(logOutUser.fulfilled, (state) => {
             state.loading = false;
@@ -90,24 +91,25 @@ const userSlice = createSlice({
         })
         .addCase(getMe.pending, (state) => {
             state.loading = true;
-            state.error = null;
+            state.error = [];
         })
         .addCase(getMe.fulfilled, (state, action) => {
             state.loading = false;
             state.user = action.payload
         })
-        .addCase(getMe.rejected, (state) => {
+        .addCase(getMe.rejected, (state, action) => {
             state.loading = false;
             state.user = null
+            state.error = action.payload
         })
         .addCase(signUpUser.pending, (state, action)=> {
             state.loading = true;
-            state.error = false;
+            state.error = [];
         })
         .addCase(signUpUser.fulfilled, (state, action) => {
             state.loading = false;
             state.user = action.payload;
-            state.error = null
+            state.error = []
         })
         .addCase(signUpUser.rejected, (state, action) => {
             state.loading = false;
