@@ -6,7 +6,13 @@ import {
   NavLinks,
   NavLink,
   LogoutButton,
-} from "../styles/NavBarStyles"; // Import styles from NavBarStyles.js
+  AppName,
+  LoginButton,
+} from "../styles/NavBarStyles"; 
+
+import {ReactComponent as Home} from "../images/Home.svg"
+import {ReactComponent as Search} from "../images/Search.svg"
+import {ReactComponent as Explore} from "../images/Explore.svg"
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -18,20 +24,17 @@ function NavBar() {
 
   return (
     <StyledNavBar>
-        <div name="app-name">
-            CodeGram
-        </div>
+      <AppName>CodeGram</AppName>
       <NavLinks>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/search">Search</NavLink>
-        <NavLink to="/explore">Explore</NavLink>
-        <NavLink to="/sign-up">Sign Up</NavLink>
+        <NavLink to="/"> <Home/> Home</NavLink>
+        <NavLink to="/search"> <Search /> Search</NavLink>
+        <NavLink to="/explore"> <Explore /> Explore</NavLink>
         <NavLink to="/profile">Profile</NavLink>
       </NavLinks>
       {user ? (
         <LogoutButton onClick={handleLogOut}>Log Out</LogoutButton>
       ) : (
-        <NavLink to="/login">Login</NavLink>
+        <LoginButton to="/login">Login</LoginButton>
       )}
     </StyledNavBar>
   );
