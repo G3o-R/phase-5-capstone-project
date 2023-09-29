@@ -39,7 +39,6 @@ function SignUp() {
     e.preventDefault();
     dispatch(signUpUser(signupData))
   }
-console.log(error)
 
   return (
     <SignUpPage>

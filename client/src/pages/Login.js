@@ -42,9 +42,9 @@ function Login() {
       username: "",
       password: "",
     });
-    
+    console.log("submitted")
   }
-console.log(user)
+
   return (
     <LoginPage>
     <ContainerWrapper>

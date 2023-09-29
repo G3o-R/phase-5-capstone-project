@@ -52,13 +52,18 @@ export const signUpUser = createAsyncThunk("user/signUpUser", async (signUpData,
 })
 
 // handles getting a session if session[:user_id] already exists
-export const getMe = createAsyncThunk("user/getMe", async ()=>{
-    return fetch("/me").then((res)=>{
-            if (res.ok()) {
-                return res.json()
-            }
+export const getMe = createAsyncThunk("user/getMe", async (thunkAPI)=>{
+    try {
+        const response = await fetch("/me")
+
+        if (!response.ok) {
+            return thunkAPI.rejectWithValue("Not Authorized")
         }
-    );
+
+        return response.json()
+    } catch (error){
+        return thunkAPI.rejectWithValue("An ocurred with the session")
+    }
 });
 
 const userSlice = createSlice({
@@ -76,15 +81,19 @@ const userSlice = createSlice({
         // login a user
         .addCase(loginUser.pending, (state) => {
             state.loading = true;
+            console.log("pending log in")
             state.error = [];
         })
         .addCase(loginUser.fulfilled, (state, action) => {
             state.loading = false;
+            console.log("logging in succesful")
             state.user = action.payload;
             state.error = [];
         })
         .addCase(loginUser.rejected, (state, action) => {
             state.loading = false;
+            console.log("logging in failed")
+
             state.user = null;
             state.error = action.payload
         })
@@ -100,14 +109,17 @@ const userSlice = createSlice({
         // get me the user
         .addCase(getMe.pending, (state) => {
             state.loading = true;
+            // console.log("pending")
             state.error = [];
         })
         .addCase(getMe.fulfilled, (state, action) => {
             state.loading = false;
+            // console.log("I am here")
             state.user = action.payload
         })
         .addCase(getMe.rejected, (state, action) => {
             state.loading = false;
+            // console.log("rejected")
             state.user = null
             state.error = action.payload
         })
