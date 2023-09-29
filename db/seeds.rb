@@ -17,7 +17,7 @@ puts "------------------seeding data"
 
   user2 = User.create!({
     username: 'User2',
-    password_digest: BCrypt::Password.create('S3cur3P@ss'),
+    password_digest: BCrypt::Password.create('12345678'),
     email: 'user2@example.com'
   })
 

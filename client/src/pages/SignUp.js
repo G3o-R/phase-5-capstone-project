@@ -34,14 +34,12 @@ function SignUp() {
     let value = e.target.value;
     setSignupData({ ...signupData, [name]: value });
   }
-// 0mgChipotle!1
+
   function handleSignUpSubmit(e) {
     e.preventDefault();
     dispatch(signUpUser(signupData))
-    // figure out how to recieve errors adjust slice on redux
-    console.log(error)
   }
-
+console.log(error)
 
   return (
     <SignUpPage>
