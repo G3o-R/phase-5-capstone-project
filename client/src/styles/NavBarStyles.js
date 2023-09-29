@@ -7,7 +7,7 @@ export const StyledNavBar = styled.div`
   top: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: flex-start;
   height: 100vh;
   max-width: 336px;
@@ -21,13 +21,20 @@ export const StyledNavBar = styled.div`
 export const NavLinks = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4rem;
+  padding-top: 30px;
+  height: 100%;
 `;
 
 export const NavLink = styled(Link)`
   color: white;
   text-decoration: none;
   font-size: 16px;
+
+  &.active {
+    font-weight: bold;
+    color: black;
+  }
 `;
 
 export const LogoutButton = styled.button`
@@ -51,6 +58,7 @@ export const LoginButton = styled.button`
 `
 
 export const AppName = styled.div`
-  font-size: 30px; /* Increase the font size to 24px or any size you prefer */
-  margin-bottom: 20px; /* Adjust spacing as needed */
+  font-size: 30px;
+  padding-top:15px;
+  margin-bottom: 10px;
 `;
