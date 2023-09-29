@@ -3,7 +3,7 @@
 function ProfilePage(){
     return (
         <div name="profile-page">
-            profile page
+            {/* profile page */}
         </div>
     )
 }

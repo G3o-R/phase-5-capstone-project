@@ -1,25 +1,40 @@
-import { NavLink } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { logOutUser } from "../redux/features/userSlice"
-function NavBar(){
-    const dispatch = useDispatch()
-    const {user} = useSelector((state)=>state.user)
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logOutUser } from "../redux/features/userSlice";
+import {
+  StyledNavBar,
+  NavLinks,
+  NavLink,
+  LogoutButton,
+} from "../styles/NavBarStyles"; // Import styles from NavBarStyles.js
 
-    function handleLogOut(){
-        dispatch(logOutUser())
-    }
+function NavBar() {
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
 
-    return (
-        <div name="nav-bar" style={
-            {display: "flex",
-            justifyContent:"space-between"}
-        }>
-            <NavLink to="/" name="link">Home</NavLink>
-            <NavLink to="/profile" name="link">Profile</NavLink>
-            <NavLink to="/sign-up" name="link">SignUp</NavLink>
-            {user ? <NavLink onClick={handleLogOut}>log Out</NavLink>:<NavLink to="/login" name="link">Login</NavLink>}
+  function handleLogOut() {
+    dispatch(logOutUser());
+  }
+
+  return (
+    <StyledNavBar>
+        <div name="app-name">
+            CodeGram
         </div>
-    )
+      <NavLinks>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/search">Search</NavLink>
+        <NavLink to="/explore">Explore</NavLink>
+        <NavLink to="/sign-up">Sign Up</NavLink>
+        <NavLink to="/profile">Profile</NavLink>
+      </NavLinks>
+      {user ? (
+        <LogoutButton onClick={handleLogOut}>Log Out</LogoutButton>
+      ) : (
+        <NavLink to="/login">Login</NavLink>
+      )}
+    </StyledNavBar>
+  );
 }
 
-export default NavBar
+export default NavBar;
