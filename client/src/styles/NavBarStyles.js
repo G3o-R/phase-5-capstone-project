@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import Login from "../pages/Login";
 
 export const StyledNavBar = styled.div`
   position: fixed;
@@ -47,7 +46,7 @@ export const LogoutButton = styled.button`
   margin: 0;
 `;
 
-export const LoginButton = styled.button`
+export const LoginLink = styled(Link)`
   background-color: transparent;
   border: none;
   color: white;

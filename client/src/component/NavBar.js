@@ -7,7 +7,7 @@ import {
   NavLinks,
   NavLink,
   LogoutButton,
-  LoginButton,
+  LoginLink,
   AppName
 } from "../styles/NavBarStyles";
 
@@ -56,7 +56,7 @@ function NavBar() {
       {user ? (
         <LogoutButton onClick={handleLogOut}>Log Out</LogoutButton>
       ) : (
-        <LoginButton to="/login">Login</LoginButton>
+        <LoginLink to="/login">Login</LoginLink>
       )}
     </StyledNavBar>
   );

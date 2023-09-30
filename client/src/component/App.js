@@ -14,14 +14,18 @@ function App() {
   useEffect(()=>{
     dispatch(getMe())
   },[])
+  const { user, loading } = useSelector((state) => state.user)
+  console.log(loading)
+
+  if (loading || !user) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="App">
       <BrowserRouter>
       <NavBar />
       <Routes>
-        {/* how do i set my default route to login????? */}
-        {/* <Route exact path="/" render={()=>{ return  false ? redirect("/home") : redirect("/login") }}/> */}
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<ProfilePage/>} />
         <Route path="/login" element={<Login />}/>
