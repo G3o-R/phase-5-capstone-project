@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 
 export const ProfilePageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px; /* Adjust the gap between elements as needed */
+  gap: 24px;
 
   h1 {
     font-size: 24px;
@@ -15,26 +17,34 @@ export const ProfilePageContainer = styled.div`
 export const PostRow = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 16px; /* Adjust the gap between posts as needed */
+  gap: 16px;
   align-items: center;
 `;
 
 export const PostsContainer = styled.div`
   display: flex;
-  flex-direction:column;
-`
+  gap: 16px;
+  flex-direction: column;
+`;
 
-export const PostContainer = styled.div`
+export const Post = styled.div`
   width: 100%;
-  max-width: 300px; /* Adjust the maximum width as needed */
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  max-width: 300px;
   overflow: hidden;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
+export const PostLink = styled(Link)`
+  width:100%;
+  height: 100%;
+  object-fit: cover
+`;
