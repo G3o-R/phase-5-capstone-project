@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../redux/features/userSlice";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   StyledNavBar,
   NavLinks,
@@ -17,11 +17,13 @@ import {ReactComponent as ExploreSVG} from "../images/Explore.svg"
 
 function NavBar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const location = useLocation();
 
   function handleLogOut() {
     dispatch(logOutUser());
+    navigate("/login")
   }
 
   return (
@@ -56,7 +58,7 @@ function NavBar() {
       {user ? (
         <LogoutButton onClick={handleLogOut}>Log Out</LogoutButton>
       ) : (
-        <LoginLink to="/login">Login</LoginLink>
+        <LoginLink to="/">Login</LoginLink>
       )}
     </StyledNavBar>
   );

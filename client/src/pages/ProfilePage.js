@@ -11,11 +11,10 @@ import {
 
 function ProfilePage() {
   const { user } = useSelector((state) => state.user);
-  console.log(user);
 
   const displayUserPosts = user.user_posts.map((post, index) => (
     <Post key={post.id}>
-      <PostLink to={`/post/${post.id}`}>
+      <PostLink to={`/p/${post.id}`}>
         <img src={post.image} alt="content" />
       </PostLink>
     </Post>

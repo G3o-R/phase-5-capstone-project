@@ -19,8 +19,6 @@ import { loginUser } from "../redux/features/userSlice";
 
 function Login() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const {user, loading, error} = useSelector((state)=>state.user)
 
   const [loginData, setLoginData] = useState({
     username: "",
@@ -42,7 +40,6 @@ function Login() {
       username: "",
       password: "",
     });
-    console.log("submitted")
   }
 
   return (

@@ -80,7 +80,7 @@ function SignUp() {
 
         <LoginContainer>
           <span>
-            Have an Account? <LoginLink to="/login">Log In</LoginLink>
+            Have an Account? <LoginLink to="/">Log In</LoginLink>
           </span>
         </LoginContainer>
       </ContainerWrapper>
