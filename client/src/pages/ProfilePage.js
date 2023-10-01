@@ -12,6 +12,7 @@ import {
 } from "../styles/ProfilePageStyles";
 
 import ProfileIcon from "../component/ProfileIcon";
+import ProfileImage from "../images/ProfileImage.jpg"
 
 function ProfilePage() {
   const { user } = useSelector((state) => state.user);
@@ -45,7 +46,7 @@ function ProfilePage() {
   return (
     <ProfilePageContainer>
       <ProfileHeader>
-        <ProfileIcon size={"big"} />
+        <ProfileIcon size={"big"} profilePicture={ProfileImage}/>
         <ProfileInfo>
           <h1>{user.username}</h1>
           <EditProfileButton>Edit profile</EditProfileButton>

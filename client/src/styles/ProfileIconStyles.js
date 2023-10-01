@@ -6,6 +6,7 @@ export const IconContainer = styled.div`
 `;
 
 export const IconImage = styled.img`
+  border-radius: 50%;
   width: ${(props) => {
     switch (props.size) {
       case "small":
