@@ -18,7 +18,6 @@ function App() {
   console.log(loading)
 
   if (loading && !user) {
-    // this would be a loading screen
     return <div>Loading...</div>;
   } else if (!user){
     return(
@@ -30,15 +29,6 @@ function App() {
     </BrowserRouter>
       )
   }
-
-  /* 
-  when you first open insta w out being logged in the initial route
-  is only "/" which is when you log in.
-  so what if we had conditional rendering for the route iteself 
-  where the path for "/" is the same for both login and home
-  except when a user does not have a session the "/" represents the login route
-  otherwise it's the home?????
-  */
 
   return (
     <div className="App">

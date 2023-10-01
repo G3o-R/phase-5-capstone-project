@@ -5,9 +5,13 @@ import {
   PostRow,
   Post,
   PostsContainer,
-  PostLink
+  PostLink,
+  ProfileHeader,
+  ProfileInfo,
+  EditProfileButton
 } from "../styles/ProfilePageStyles";
 
+import ProfileIcon from "../component/ProfileIcon";
 
 function ProfilePage() {
   const { user } = useSelector((state) => state.user);
@@ -40,8 +44,14 @@ function ProfilePage() {
 
   return (
     <ProfilePageContainer>
-        <h1>{user.username}</h1>
-        <PostsContainer>{renderedRows}</PostsContainer>
+      <ProfileHeader>
+        <ProfileIcon size={"big"} />
+        <ProfileInfo>
+          <h1>{user.username}</h1>
+          <EditProfileButton>Edit profile</EditProfileButton>
+        </ProfileInfo>
+      </ProfileHeader>
+      <PostsContainer>{renderedRows}</PostsContainer>
     </ProfilePageContainer>
   );
 }
