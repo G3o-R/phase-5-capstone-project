@@ -61,37 +61,37 @@ puts "------------------seeding data"
 
   user2.user_posts.create!([
     {
-      image: "https://example.com/image1.jpg",
+      image: "https://preview.redd.it/r7lp86ibwsrb1.jpg?width=640&crop=smart&auto=webp&s=4665d1e2c572ddc5ee6275a50386b36c658510f8",
       description: "This is my first post"
     },
     {
-      image: "https://example.com/image2.jpg",
+      image: "https://i.redd.it/erm0opn5tsrb1.jpg",
       description: "Enjoying the view"
     }
   ])
   
   user3.user_posts.create!([
     {
-      image: "https://example.com/image3.jpg",
+      image: "https://preview.redd.it/kfron8v6kqrb1.jpg?width=640&crop=smart&auto=webp&s=1337f39de12102ff5723c9cc85f05083acaa49d0",
       description: "Just a random picture"
     }
   ])
   
   user4.user_posts.create!([
     {
-      image: "https://example.com/image4.jpg",
+      image: "https://preview.redd.it/3weoem56zorb1.png?width=640&crop=smart&auto=webp&s=9556f70f5ee15b26ed543ae9c3cf191fd01eb256",
       description: "Nature at its best"
     },
     {
-      image: "https://example.com/image5.jpg",
+      image: "https://preview.redd.it/yqsde6bubprb1.png?width=640&crop=smart&auto=webp&s=17e060f9347e4d56f9624caaaa9c32ae31c63e10",
       description: "Sunset vibes"
     }
   ])
   
   user5.user_posts.create!([
     {
-      image: "https://example.com/image6.jpg",
-      description: "Travel memories"
+      image: "https://preview.redd.it/gzqcy4zahnrb1.png?width=640&crop=smart&auto=webp&s=f394f4534202a2dd082b6499010ca71d26604c83",
+      description: "standing desks >>>"
     }
   ])
 

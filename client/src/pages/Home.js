@@ -24,7 +24,6 @@ function Home(){
     return (
 
         <HomePage>
-        Home is here
         <PostsContainer>
         {postsArray}
         </PostsContainer>
