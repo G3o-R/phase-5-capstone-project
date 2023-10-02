@@ -1,4 +1,3 @@
-//loginUserSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // handles logging in. creates a session

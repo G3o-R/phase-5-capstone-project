@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     end
 
     def index
-        posts = Post.all
+        posts = Post.all.shuffle
         # need to work on getting comment replies 
         render json: posts #, ['comments', 'comments.comment_replies']
     end
