@@ -2,6 +2,11 @@ import { useSelector, useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { getPosts } from "../redux/features/allPostsSlice"
 import { useEffect } from "react"
+import {
+     HomePage,
+     PostsContainer,
+    
+    } from "../styles/HomeStyles"
 
 import PostCard from "../component/PostCard"
 
@@ -18,10 +23,12 @@ function Home(){
 
     return (
 
-        <div>
-            Home is here
-            {postsArray}
-        </div>
+        <HomePage>
+        Home is here
+        <PostsContainer>
+        {postsArray}
+        </PostsContainer>
+        </HomePage>
     )
 }
 
