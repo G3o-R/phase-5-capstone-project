@@ -3,6 +3,7 @@ import styled from "styled-components";
 // Define styled components for different sizes
 export const IconContainer = styled.div`
   display: inline-block;
+  width: 150px;
 `;
 
 export const IconImage = styled.img`

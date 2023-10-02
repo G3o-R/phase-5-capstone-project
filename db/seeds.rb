@@ -12,7 +12,8 @@ puts "------------------seeding data"
   g3or = User.create!({
     username: 'G3o-R',
     password_digest: BCrypt::Password.create('0mgChipotle!'), 
-    email: 'fakeemail@gmail.com'
+    email: 'fakeemail@gmail.com',
+    biography: '"No this is Patrick"-The Krusty Krab'
   })
 
   user2 = User.create!({

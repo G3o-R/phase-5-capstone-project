@@ -8,14 +8,19 @@ import {
   PostLink,
   ProfileHeader,
   ProfileInfo,
-  EditProfileButton
+  EditProfileButton,
+  SmallText,
+  InlineFlex,
+  BioText,
+  BioSection,
 } from "../styles/ProfilePageStyles";
 
 import ProfileIcon from "../component/ProfileIcon";
-import ProfileImage from "../images/ProfileImage.jpg"
+import ProfileImage from "../images/ProfileImage.jpg";
 
 function ProfilePage() {
   const { user } = useSelector((state) => state.user);
+  console.log(user);
 
   const displayUserPosts = user.user_posts.map((post, index) => (
     <Post key={post.id}>
@@ -46,10 +51,21 @@ function ProfilePage() {
   return (
     <ProfilePageContainer>
       <ProfileHeader>
-        <ProfileIcon size={"big"} profilePicture={ProfileImage}/>
+        <ProfileIcon size={"big"} profilePicture={ProfileImage} />
         <ProfileInfo>
-          <h1>{user.username}</h1>
-          <EditProfileButton>Edit profile</EditProfileButton>
+          <InlineFlex className="buttons-sections">
+            <h1>{user.username}</h1>
+            <EditProfileButton>Edit profile</EditProfileButton>
+          </InlineFlex>
+          <InlineFlex className="user-info-section">
+            <SmallText>## posts</SmallText>
+            <SmallText>## followers</SmallText>
+            <SmallText>## following</SmallText>
+          </InlineFlex>
+          <BioSection>
+            <SmallText>{user.username}</SmallText>
+            <BioText>{user.biography}</BioText>
+          </BioSection>
         </ProfileInfo>
       </ProfileHeader>
       <PostsContainer>{renderedRows}</PostsContainer>

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-
 export const ProfilePageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,22 +43,20 @@ export const Post = styled.div`
 `;
 
 export const PostLink = styled(Link)`
-  width:100%;
+  width: 100%;
   height: 100%;
-  object-fit: cover
+  object-fit: cover;
 `;
-
 
 export const ProfileHeader = styled.div`
   display: flex;
-  justify-content: left;
   align-items: center;
   gap: 20px;
   padding-top: 50px;
   padding-bottom: 70px;
 `;
 
-export const ProfileInfo = styled.div`
+export const ProfileInfo = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -75,19 +72,33 @@ export const EditProfileButton = styled.button`
   border-radius: 4px;
 `;
 
-export const ProfileIcon = styled.img`
-  &.small {
-    width: 32px;
-    height: 32px;
-  }
+// Additional Styles
+export const SmallText = styled.h2`
+  font-weight: 150;
+  font-size: 16px;
+  margin: 0;
+`;
 
-  &.medium {
-    width: 64px;
-    height: 64px;
-  }
+export const InlineFlex = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
 
-  &.big {
-    width: 96px;
-    height: 96px;
+export const BioText = styled.h1`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+`;
+
+export const BioSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  h1 {
+    font-size: 16px;
+    margin: 0;
   }
 `;
