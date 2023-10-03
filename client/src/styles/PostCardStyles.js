@@ -62,16 +62,15 @@ export const Description = styled.h4`
 
 export const SeeCommentsButton = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   font-size: 14px;
   color: #777;
-  margin-top: 8px;
 `;
 
 export const ViewComments = styled.p`
   cursor: pointer
 `;
 
-export const AddCommentText = styled.p`
+export const AddCommentText = styled.form`
 cursor: pointer
 `;

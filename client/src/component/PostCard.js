@@ -14,10 +14,30 @@ import {
     ViewComments,
     AddCommentText
 } from "../styles/PostCardStyles.js"
+import { useState } from "react";
 
 function PostCard({ post }) {
     const { comments, description, image, likes, user } = post;
-  
+    const [commentData, setComment] = useState({
+      comment: "",
+      post_id: "",
+      user_id: ""
+    })
+    const {comment, user_id, post_id} = commentData
+
+    function handleChange(e){
+      let name = e.target.name
+      let value = e.target.value
+      setComment({...commentData, [name]:value})
+    }
+
+    function handleCommentSubmit(e){
+      e.preventDefault()
+      console.log(comment)
+    }
+
+
+
     return (
       <PostCardContainer name="post-card">
         <UserName name="users-name">{user}</UserName>
@@ -39,8 +59,15 @@ function PostCard({ post }) {
             <ViewComments onClick={() => console.log("display comments")}>
               View all {comments.length} comments...
             </ViewComments>
-            <AddCommentText onClick={() => console.log("display comments")}>
-              Add a comment...
+            <AddCommentText onSubmit={handleCommentSubmit}>
+              <input
+               type="text" 
+               value={comment} 
+               name="comment" 
+               placeholder="Add a comment.." 
+               onChange={handleChange} 
+               />
+               {comment.length > 0 ? <button type="submit" name="post-comment">Post</button>:null}
             </AddCommentText>
           </SeeCommentsButton>
         </BottomPostSection>
