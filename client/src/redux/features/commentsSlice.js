@@ -23,7 +23,7 @@ export const addComment = createAsyncThunk("comment/addComment", async (commentD
 const commentsSlice = createSlice(({
     name: "comments",
     initialState: {
-        posts: [],
+        comments: [],
         loading: false,
         error: []
     },
