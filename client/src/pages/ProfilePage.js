@@ -20,7 +20,6 @@ import ProfileImage from "../images/ProfileImage.jpg";
 
 function ProfilePage() {
   const { user } = useSelector((state) => state.user);
-  console.log(user);
 
   const displayUserPosts = user.user_posts.map((post, index) => (
     <Post key={post.id}>

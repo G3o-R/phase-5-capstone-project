@@ -15,15 +15,18 @@ import {
     AddCommentText
 } from "../styles/PostCardStyles.js"
 import { useState } from "react";
+import { useDispatch} from "react-redux";
+import { addComment } from "../redux/features/allPostsSlice";
 
 function PostCard({ post }) {
-    const { comments, description, image, likes, user } = post;
+    const dispatch = useDispatch()
+
+    const { comments, description, image, likes, user, id } = post;
     const [commentData, setComment] = useState({
       comment: "",
-      post_id: "",
-      user_id: ""
+      post_id: ""
     })
-    const {comment, user_id, post_id} = commentData
+    const {comment, post_id} = commentData
 
     function handleChange(e){
       let name = e.target.name
@@ -33,7 +36,11 @@ function PostCard({ post }) {
 
     function handleCommentSubmit(e){
       e.preventDefault()
-      console.log(comment)
+      const commentToPost = {
+        comment: comment,
+        post_id: id
+      }
+      console.log(commentToPost)
     }
 
 

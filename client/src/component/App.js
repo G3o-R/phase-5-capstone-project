@@ -15,7 +15,6 @@ function App() {
     dispatch(getMe())
   },[])
   const { user, loading } = useSelector((state) => state.user)
-  console.log(loading)
 
   if (loading && !user) {
     return <div>Loading...</div>;
