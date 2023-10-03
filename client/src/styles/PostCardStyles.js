@@ -1,19 +1,20 @@
 import styled from "styled-components";
+import { ReactComponent as LikeSVG } from "../images/Like.svg";
+import { ReactComponent as CommentSVG } from "../images/Comment.svg";
 
 export const PostCardContainer = styled.div`
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 1px;
   margin-bottom: 16px;
   padding: 16px;
   background-color: #fff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  width: 30rem;
   height: auto;
   img {
     width: 100%;
     height: auto;
     object-fit: cover;
   }
+  border-bottom: 1px solid #ddd;
 `;
 
 
