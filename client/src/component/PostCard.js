@@ -83,7 +83,7 @@ function PostCard({ post }) {
         </BottomPostSection>
       </PostCardContainer>
 
-      {showPostDisplay? <PostDisplay />: null}
+      {showPostDisplay? <PostDisplay post={post} onClose={() => setShowPostDisplay(false)} showPostDisplay={showPostDisplay}/>: null}
       </>
     );
   }
