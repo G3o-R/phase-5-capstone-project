@@ -80,19 +80,15 @@ const userSlice = createSlice({
         // login a user
         .addCase(loginUser.pending, (state) => {
             state.loading = true;
-            console.log("pending log in")
             state.error = [];
         })
         .addCase(loginUser.fulfilled, (state, action) => {
             state.loading = false;
-            console.log("logging in succesful")
             state.user = action.payload;
             state.error = [];
         })
         .addCase(loginUser.rejected, (state, action) => {
             state.loading = false;
-            console.log("logging in failed")
-
             state.user = null;
             state.error = action.payload
         })

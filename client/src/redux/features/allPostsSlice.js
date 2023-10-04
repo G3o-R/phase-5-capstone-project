@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
     try {
@@ -13,6 +13,8 @@ export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
         return thunkAPI.rejectWithValue("An error occurred getting posts")
     }
 })
+
+export const updatePostWithNewComment = createAction("posts/updatePostWithNewComment")
 
 const allPostsSlice = createSlice(({
     name: "posts",
@@ -38,6 +40,17 @@ const allPostsSlice = createSlice(({
             state.loading = false;
             state.posts = null;
             state.error = [];
+        })
+        .addCase(updatePostWithNewComment, (state,action) => {
+            const {post_id, comment } = action.payload
+
+            const updatedPosts = state.posts.map((post)=>{
+                if (post_id === post.id) {
+                    return { ...post, comments: [...post.comments, comment]}
+                };
+                return post
+            });
+            state.posts = updatedPosts
         })
     }
 }))

@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+import { updatePostWithNewComment} from "./allPostsSlice"
+
 export const addComment = createAsyncThunk("comment/addComment", async (commentData, thunkAPI) => {
     try {
         const response = await fetch("/comments",{
@@ -13,6 +15,10 @@ export const addComment = createAsyncThunk("comment/addComment", async (commentD
             const errorMessage = await response.json()
             return thunkAPI.rejectWithValue(errorMessage)
         }
+
+        const post_id = commentData.post_id
+        const newComment = response.json()
+        thunkAPI.dispatch(updatePostWithNewComment({ post_id, comment: newComment}));
 
         return response.json()
     } catch (error){
