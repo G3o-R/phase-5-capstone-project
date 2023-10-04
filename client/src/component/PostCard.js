@@ -18,8 +18,11 @@ import { useState } from "react";
 import { useDispatch} from "react-redux";
 import { addComment } from "../redux/features/commentsSlice.js";
 
+import PostDisplay from "./PostDisplay";
+
 function PostCard({ post }) {
     const dispatch = useDispatch()
+    const [showPostDisplay, setShowPostDisplay] = useState(false)
 
     const { comments, description, image, likes, user, id } = post;
     const [commentData, setComment] = useState({
@@ -45,6 +48,7 @@ function PostCard({ post }) {
 
 
     return (
+      <>
       <PostCardContainer name="post-card">
         <UserName name="users-name">{user}</UserName>
         <PostContainer name="post-container">
@@ -55,14 +59,14 @@ function PostCard({ post }) {
             <LikeButton onClick={() => console.log("click like btn")}>
               <LikeSVG />
             </LikeButton>
-            <CommentButton onClick={() => console.log("click comment btn")}>
+            <CommentButton onClick={() => setShowPostDisplay(!showPostDisplay)}>
               <CommentSVG />
             </CommentButton>
           </LikeAndCommentButtons>
           <Likes name="likes">{likes} likes</Likes>
           <Description name="description">{description}</Description>
           <SeeCommentsButton name="see-comments-button">
-            <ViewComments onClick={() => console.log("display comments")}>
+            <ViewComments onClick={() => setShowPostDisplay(!showPostDisplay)}>
               View all {comments.length} comments...
             </ViewComments>
             <AddCommentText onSubmit={handleCommentSubmit}>
@@ -78,6 +82,9 @@ function PostCard({ post }) {
           </SeeCommentsButton>
         </BottomPostSection>
       </PostCardContainer>
+
+      {showPostDisplay? <PostDisplay />: null}
+      </>
     );
   }
   
