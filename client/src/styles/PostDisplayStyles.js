@@ -94,7 +94,6 @@ export const ImageContainer = styled.div`
   align-items:center;
   max-width: 1267px;
   max-height: 1267px;
-  width: max-content;
   flex-basis: 1267px;
   aspect-ratio: 1/1;
   align-content: center;

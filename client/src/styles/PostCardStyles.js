@@ -42,11 +42,11 @@ export const LikeAndCommentButtons = styled.div`
   cursor: pointer;
 `;
 
-export const LikeButton = styled.button`
+export const LikeButton = styled.div`
   cursor: pointer;
 `;
 
-export const CommentButton = styled.button`
+export const CommentButton = styled.div`
   cursor: pointer;
 `;
 

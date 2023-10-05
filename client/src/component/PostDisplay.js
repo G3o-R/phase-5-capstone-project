@@ -16,7 +16,7 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
   const { comments, description, image, user } = post;
 
   const commentsDisplay = comments.map((comment) => (
-    <Comment comment={comment} key={comment.id} />
+    <Comment commentData={comment} key={comment.id} />
   ));
 
   return (
