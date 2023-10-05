@@ -7,9 +7,10 @@ import {
   UserInfo,
   CommentsList,
   ImageContainer,
-  PostSideBar
+  PostSideBar,
+  AddCommentTextPostDisplay,
+  CustomTextarea
 } from "../styles/PostDisplayStyles.js";
-import { AddCommentText } from "../styles/PostCardStyles.js";
 
 import Comment from "./Comment";
 
@@ -47,16 +48,16 @@ function PostDisplay({ post, onClose, showPostDisplay, comment, handleChange, ha
             <h3>{description}</h3>
           </UserInfo>
           <CommentsList>{commentsDisplay}</CommentsList>
-          <AddCommentText onSubmit={handleCommentSubmit}>
-              <input
+          <AddCommentTextPostDisplay onSubmit={handleCommentSubmit}>
+              <textarea
                type="text" 
                value={comment} 
                name="comment" 
                placeholder="Add a comment.." 
                onChange={handleChange} 
-               />
+               ></textarea>
                {comment.length > 0 ? <button type="submit" name="post-comment">Post</button>:null}
-            </AddCommentText>
+            </AddCommentTextPostDisplay>
         </PostSideBar>
       </PostDisplayContent>
     </PostDisplayContainer>

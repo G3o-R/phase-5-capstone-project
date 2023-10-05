@@ -67,10 +67,13 @@ export const SeeCommentsButton = styled.div`
   color: #777;
 `;
 
+export const AddCommentText = styled.form`
+  cursor: pointer;
+`;
+
 export const ViewComments = styled.p`
   cursor: pointer
 `;
-
-export const AddCommentText = styled.form`
+/* export const AddCommentText = styled.form`
 cursor: pointer
-`;
+`; */

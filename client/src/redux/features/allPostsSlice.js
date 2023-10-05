@@ -43,7 +43,6 @@ const allPostsSlice = createSlice(({
         })
         .addCase(updatePostWithNewComment, (state,action) => {
             const {post_id, comment } = action.payload
-
             const updatedPosts = state.posts.map((post)=>{
                 if (post_id === post.id) {
                     return { ...post, comments: [...post.comments, comment]}
