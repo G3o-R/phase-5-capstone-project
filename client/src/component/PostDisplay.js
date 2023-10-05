@@ -9,10 +9,11 @@ import {
   ImageContainer,
   PostSideBar
 } from "../styles/PostDisplayStyles.js";
+import { AddCommentText } from "../styles/PostCardStyles.js";
 
 import Comment from "./Comment";
 
-function PostDisplay({ post, onClose, showPostDisplay }) {
+function PostDisplay({ post, onClose, showPostDisplay, comment, handleChange, handleCommentSubmit }) {
   const { comments, description, image, user } = post;
 
   const commentsDisplay = comments.map((comment) => (
@@ -46,6 +47,16 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
             <h3>{description}</h3>
           </UserInfo>
           <CommentsList>{commentsDisplay}</CommentsList>
+          <AddCommentText onSubmit={handleCommentSubmit}>
+              <input
+               type="text" 
+               value={comment} 
+               name="comment" 
+               placeholder="Add a comment.." 
+               onChange={handleChange} 
+               />
+               {comment.length > 0 ? <button type="submit" name="post-comment">Post</button>:null}
+            </AddCommentText>
         </PostSideBar>
       </PostDisplayContent>
     </PostDisplayContainer>

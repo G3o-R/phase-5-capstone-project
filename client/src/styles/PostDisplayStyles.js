@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PostDisplayContainer = styled.div`
-  /* Your styles for the container here */
+  box-sizing: border-box;
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@ export const PostDisplayContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999; /* Ensures the component appears above other content */
+  z-index: 999;
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
   visibility: hidden;
@@ -24,7 +24,9 @@ export const PostDisplayContainer = styled.div`
 export const PostDisplayContent = styled.div`
   background-color: #fff;
   max-width: 1770px;
-  width:100%;
+  max-height: calc(100% - 40px);
+  width:auto;
+  height:100%;
   border-radius: 4px;
   position: relative;
   display: flex;
@@ -37,7 +39,7 @@ export const CloseButton = styled.button`
   position: absolute;
   top: 8px;
   right: 8px;
-  font-size: 24px;
+  font-size: 50px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -45,8 +47,7 @@ export const CloseButton = styled.button`
 `;
 
 export const PostImage = styled.img`
-  /* position: absolute; */
-  max-width: 1267px;
+  max-width: 100%;
   max-height: 1267px;
   height:auto;
   width: 100%;
@@ -93,7 +94,7 @@ export const ImageContainer = styled.div`
   display: flex;
   align-items:center;
   max-width: 1267px;
-  max-height: 1267px;
+  height:100%;
   flex-basis: 1267px;
   aspect-ratio: 1/1;
   align-content: center;
