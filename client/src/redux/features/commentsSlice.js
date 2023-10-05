@@ -18,7 +18,6 @@ export const addComment = createAsyncThunk("comment/addComment", async (commentD
 
         const post_id = commentData.post_id
         const newComment = await response.json()
-        console.log(newComment)
         thunkAPI.dispatch(updatePostWithNewComment({ post_id, comment: newComment}));
 
         return response.json()

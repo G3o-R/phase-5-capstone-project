@@ -1,10 +1,13 @@
 import { ReactComponent as LikeSVG } from "../images/Like.svg"
+import { ReactComponent as ThreeDotsSVG } from "../images/ThreeDots.svg"
 import { 
     CommentContainer,
     ProfileName,
     CommentText,
     LikeButtonContainer,
-    LikesDisplay
+    LikesDisplay,
+    CommentOptions
+
 } from "../styles/CommentStyles";
 
 function Comment({commentData}){
@@ -18,7 +21,8 @@ function Comment({commentData}){
             <LikeSVG />
           </LikeButtonContainer>
         </CommentContainer>
-          <LikesDisplay>{likes} likes</LikesDisplay>
+          <span><LikesDisplay>{likes} likes</LikesDisplay>
+           <CommentOptions><ThreeDotsSVG /> </CommentOptions></span>
     </>
       );
     }

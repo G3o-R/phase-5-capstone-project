@@ -30,3 +30,7 @@ export const LikesDisplay = styled.p`
   color: #777;
   margin-top: 4px;
 `;
+
+export const CommentOptions = styled.div`
+
+`;

@@ -24,17 +24,18 @@ export const PostDisplayContainer = styled.div`
 export const PostDisplayContent = styled.div`
   background-color: #fff;
   max-width: 1770px;
-  max-height: calc(100% - 40px);
-  width:auto;
+  max-height:560px;
+  width: auto;
   border-radius: 4px;
   position: relative;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   margin-left: 3rem;
   margin-right: 3rem;
-
-  @media screen and (min-width:1200px){
-    height:100%;
+  
+  @media screen and (min-width: 1200px) {
+    height: 100%;
+    max-height: calc(100% - 40px);
   }
 `;
 
@@ -52,14 +53,14 @@ export const CloseButton = styled.button`
 export const PostImage = styled.img`
   max-width: 100%;
   max-height: 100%;
-  height:auto;
+  height: auto;
   width: 100%;
   object-fit: contain;
 `;
 
 export const PostSideBar = styled.div`
   align-items: stretch;
-  border:0;
+  border: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -67,9 +68,9 @@ export const PostSideBar = styled.div`
   flex-shrink: 2;
   font-size: 100%;
   margin: 0;
-  max-width:500px;
+  max-width: 500px;
   min-width: 405px;
-  padding:0;
+  padding: 0;
   vertical-align: baseline;
 
   margin-left: 16px;
@@ -87,6 +88,10 @@ export const CommentsList = styled.ul`
   list-style: none;
   padding: 0;
   margin-top: 16px;
+  max-height: 100%;
+  height: auto;
+  object-fit:contain;
+  overflow-y: auto;
 
   li {
     margin-bottom: 8px;
@@ -95,11 +100,11 @@ export const CommentsList = styled.ul`
 
 export const ImageContainer = styled.div`
   display: flex;
-  align-items:center;
+  align-items: center;
   max-width: 1267px;
-  padding-left:0px;
-  height:auto;
-  width:auto;
+  padding-left: 0px;
+  height: auto;
+  width: auto;
   flex-basis: 1267px;
   aspect-ratio: 1/1;
   align-content: center;
@@ -107,12 +112,12 @@ export const ImageContainer = styled.div`
 `;
 
 export const AddCommentTextPostDisplay = styled.form`
-  margin-top: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-bottom: 5px;
-  height:auto;
+  height: auto;
+  margin-top:auto;
 
   textarea {
     flex-grow: 1;
@@ -137,61 +142,5 @@ export const AddCommentTextPostDisplay = styled.form`
     &:hover {
       background-color: #005bb5;
     }
-  }
-`;
-
-const CustomTextarea = styled.textarea`
-  appearance: none;
-  block-size: 54px;
-  border-block-end-color: rgb(204, 208, 213);
-  border-block-end-style: none;
-  border-block-end-width: 0px;
-  border-block-start-color: rgb(204, 208, 213);
-  border-block-start-style: none;
-  border-block-start-width: 0px;
-  border-inline-end-color: rgb(204, 208, 213);
-  border-inline-end-style: none;
-  border-inline-end-width: 0px;
-  border-inline-start-color: rgb(204, 208, 213);
-  border-inline-start-style: none;
-  border-inline-start-width: 0px;
-  box-sizing: content-box;
-  display: flex;
-  height: 54px;
-  inline-size: 182.828px;
-  max-block-size: 80px;
-  max-height: 80px;
-  max-inline-size: 100%;
-  max-width: 100%;
-  min-block-size: auto;
-  min-height: auto;
-  min-inline-size: auto;
-  min-width: auto;
-  padding-block-end: 0px;
-  padding-block-start: 0px;
-  padding-inline-end: 0px;
-  padding-inline-start: 0px;
-  perspective-origin: 91.4062px 27px;
-  resize: none;
-  transform-origin: 91.4141px 27px;
-  unicode-bidi: isolate;
-  width: 182.828px;
-  border: 0px none rgb(204, 208, 213);
-  flex: 1 1 auto;
-  font: 14px / 18px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  padding: 0px;
-
-  &:after {
-    border-end-end-radius: 6px;
-    border-end-start-radius: 6px;
-    border-start-end-radius: 6px;
-    display: block;
-    border-radius: 0px 6px 6px;
-    font: 14px / 18px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-
-  &:before {
-    display: block;
-    font: 14px / 18px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
 `;
