@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   PostDisplayContainer,
   PostDisplayContent,
@@ -8,7 +8,7 @@ import {
   CommentsList,
   ImageContainer,
   PostSideBar
-} from "../styles/PostDisplayStyles.js"; // Import the styled components from PostDisplayStyles.js
+} from "../styles/PostDisplayStyles.js";
 
 import Comment from "./Comment";
 
@@ -19,12 +19,23 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
     <Comment commentData={comment} key={comment.id} />
   ));
 
+  useEffect(() => {
+    if (showPostDisplay) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showPostDisplay]);
+
   return (
     <PostDisplayContainer
       className={`post-display ${showPostDisplay ? "active" : ""}`}
-      // onClick={onClose}
     >
-        <CloseButton onClick={onClose}>×</CloseButton>
+      <CloseButton onClick={onClose}>×</CloseButton>
       <PostDisplayContent>
         <ImageContainer>
           <PostImage src={image} alt={`${user}'s post`} />
