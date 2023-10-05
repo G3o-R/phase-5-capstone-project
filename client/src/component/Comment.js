@@ -1,6 +1,6 @@
 
 
-function Comment(){
+function Comment({comment}){
     return(
         <div className="commentContainer">
             <div name="profileIcon">profile picture here maybe</div>

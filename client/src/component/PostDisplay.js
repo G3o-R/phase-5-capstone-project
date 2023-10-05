@@ -22,6 +22,7 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
   return (
     <PostDisplayContainer
       className={`post-display ${showPostDisplay ? "active" : ""}`}
+      // onClick={onClose}
     >
         <CloseButton onClick={onClose}>×</CloseButton>
       <PostDisplayContent>

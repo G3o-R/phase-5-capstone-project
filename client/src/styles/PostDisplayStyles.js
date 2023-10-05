@@ -15,7 +15,6 @@ export const PostDisplayContainer = styled.div`
   transition: opacity 0.3s ease-in-out;
   opacity: 0;
   visibility: hidden;
-
   &.active {
     opacity: 1;
     visibility: visible;
@@ -23,19 +22,18 @@ export const PostDisplayContainer = styled.div`
 `;
 
 export const PostDisplayContent = styled.div`
-  /* Your styles for the content here */
   background-color: #fff;
-  max-width: 600px;
-  width: 100%;
-  padding: 16px;
-  border-radius: 8px;
+  max-width: 1770px;
+  width:100%;
+  border-radius: 4px;
   position: relative;
-  display: flex; /* Display content in a row direction */
-  flex-direction: row; /* Display content in a row direction */
+  display: flex;
+  flex-direction: row; 
+  margin-left: 3rem;
+  margin-right: 3rem;
 `;
 
 export const CloseButton = styled.button`
-  /* Your styles for the close button here */
   position: absolute;
   top: 8px;
   right: 8px;
@@ -47,23 +45,33 @@ export const CloseButton = styled.button`
 `;
 
 export const PostImage = styled.img`
-  /* Your styles for the post image here */
+  /* position: absolute; */
+  max-width: 1267px;
+  max-height: 1267px;
+  height:auto;
   width: 100%;
-  max-height: 400px;
-  object-fit: cover;
-  border-radius: 8px;
+  object-fit: contain;
 `;
 
 export const PostSideBar = styled.div`
-  /* Your styles for the sidebar here */
-  flex: 1; /* Take up available space */
+  align-items: stretch;
+  border:0;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column; /* Display content in a column direction */
-  margin-left: 16px; /* Add margin for spacing */
+  flex-direction: column;
+  flex: 1;
+  flex-shrink: 2;
+  font-size: 100%;
+  margin: 0;
+  max-width:500px;
+  min-width: 405px;
+  padding:0;
+  vertical-align: baseline;
+
+  margin-left: 16px;
 `;
 
 export const UserInfo = styled.div`
-  /* Your styles for user info here */
   margin-top: 16px;
   h3 {
     font-size: 18px;
@@ -72,20 +80,24 @@ export const UserInfo = styled.div`
 `;
 
 export const CommentsList = styled.ul`
-  /* Your styles for comments list here */
   list-style: none;
   padding: 0;
   margin-top: 16px;
 
-  /* Style individual comment items (li) if needed */
   li {
     margin-bottom: 8px;
-    /* Add your styles for comments here */
   }
 `;
 
 export const ImageContainer = styled.div`
-  max-width: fit-content;
-  height: 100%;
+  display: flex;
+  align-items:center;
+  max-width: 1267px;
+  max-height: 1267px;
+  width: max-content;
+  flex-basis: 1267px;
+  aspect-ratio: 1/1;
+  align-content: center;
+  background-color: black;
 `;
 
