@@ -26,13 +26,16 @@ export const PostDisplayContent = styled.div`
   max-width: 1770px;
   max-height: calc(100% - 40px);
   width:auto;
-  height:100%;
   border-radius: 4px;
   position: relative;
   display: flex;
   flex-direction: row; 
   margin-left: 3rem;
   margin-right: 3rem;
+
+  @media screen and (min-width:1200px){
+    height:100%;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -48,7 +51,7 @@ export const CloseButton = styled.button`
 
 export const PostImage = styled.img`
   max-width: 100%;
-  max-height: 1267px;
+  max-height: 100%;
   height:auto;
   width: 100%;
   object-fit: contain;
@@ -94,7 +97,8 @@ export const ImageContainer = styled.div`
   display: flex;
   align-items:center;
   max-width: 1267px;
-  height:100%;
+  /* max-height: 1267px; */
+  height:auto;
   flex-basis: 1267px;
   aspect-ratio: 1/1;
   align-content: center;
