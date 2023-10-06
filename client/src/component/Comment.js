@@ -36,7 +36,9 @@ function Comment({commentData}){
          { user.username === username? <CommentOptions className="OPTIONS"><ThreeDotsSVG onClick={()=>setShowOptions(!showOptions)} /></CommentOptions> : null }
         </BottomOfCommentSection>
         </Container>
-        {showOptions ? <OptionsDisplay commentData={commentData}/> : null}
+        {showOptions ? <OptionsDisplay
+         commentData={commentData} 
+         onClose={() => { setShowOptions(false)}}/> : null}
       </>
       );
     }

@@ -20,12 +20,62 @@ export const OptionsDisplayContainer = styled.div`
   }
 `;
 
-export const OptionsDialogContent = styled.div`
-  background-color: #fff;
-  max-width: 300px;
-  width: 100%;
-  border-radius: 4px;
-  position: relative;
-  padding: 20px;
+export const OptionsContent = styled.div`
+    /* height: 96px; */
+    /* background-color: #fff; */
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    width:100%;
+    flex-flow: column nowrap;
+    /* border-radius: 16px; */
+    position: relative;
+    /* gap: 5px; */
+    overflow:hidden;
+
+    .delete{
+        color:rgb(237, 73, 86);
+
+    }
+
+    .edit{
+        border: 1px solid #ccc;
+        border-radius: 24px 24px 0px 0px; 
+
+
+    }
+
+    .cancel{
+        border: 1px solid #ccc;
+        border-radius: 0px 0px 24px 24px; 
+
+    }
 `;
 
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 50px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #888;
+`;
+
+export const Option = styled.button`
+  overflow: hidden;
+  background-color: #fff;
+  border: none;
+  font-weight: 700;
+  width:100%;
+  height:40px;
+  object-fit: cover;
+  cursor: pointer;
+  &:hover {
+    background-color: #fff; /* Set the background color to #fff on hover */
+  }
+  &:focus {
+    outline: none; /* Remove the default focus outline */
+  }
+`;
