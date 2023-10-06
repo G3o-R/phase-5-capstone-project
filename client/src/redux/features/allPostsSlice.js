@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
+import { deleteComment } from "./commentsSlice";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
     try {
@@ -47,6 +48,17 @@ const allPostsSlice = createSlice(({
             const updatedPosts = state.posts.map((post)=>{
                 if (post_id === post.id) {
                     return { ...post, comments: [...post.comments, comment]}
+                };
+                return post
+            });
+            state.posts = updatedPosts
+        })
+        .addCase(removeCommentFromPost, (state,action) => {
+            const {post_id, commentID } = action.payload
+            const updatedPosts = state.posts.map((post) => {
+                if (post_id === post.id) { 
+                const updatedCommentsArray = post.comments.filter((comment) => comment.id !== commentID)
+                return { ...post, comments: updatedCommentsArray}
                 };
                 return post
             });

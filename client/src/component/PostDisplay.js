@@ -20,6 +20,7 @@ function PostDisplay({ post, onClose, showPostDisplay, comment, handleChange, ha
   const commentsDisplay = comments.map((comment) => (
     <Comment commentData={comment} key={comment.id} />
   ));
+  console.log(comments.length)
 
   useEffect(() => {
     if (showPostDisplay) {

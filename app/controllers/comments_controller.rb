@@ -17,7 +17,6 @@ class CommentsController < ApplicationController
     end
 
     def destroy 
-        # byebug
         comment = @current_user.comments.find(params[:id])
         comment.destroy
         head :no_content
