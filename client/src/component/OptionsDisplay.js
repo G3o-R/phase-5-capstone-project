@@ -5,10 +5,16 @@ import {
     Option
  } from "../styles/OptionsDisplayStyles";
 
+ import { useDispatch } from "react-redux"
+ import { deleteComment } from "../redux/features/commentsSlice";
+
 function OptionsDisplay({ commentData, onClose }) {
     // console.log(commentData);
+    const dispatch = useDispatch()
     function handleDeleteComment(){
-        console.log("delete")
+        console.log(commentData)
+        dispatch(deleteComment(commentData))
+        onClose()
     }
 
     function handleEditComment(){

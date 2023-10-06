@@ -16,7 +16,8 @@ class CommentsController < ApplicationController
         render json: comment
     end
 
-    def delete 
+    def destroy 
+        # byebug
         comment = @current_user.comments.find(params[:id])
         comment.destroy
         head :no_content

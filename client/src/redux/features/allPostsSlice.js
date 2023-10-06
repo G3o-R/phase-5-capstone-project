@@ -15,6 +15,7 @@ export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
 })
 
 export const updatePostWithNewComment = createAction("posts/updatePostWithNewComment")
+export const removeCommentFromPost = createAction("posts/removeCommentFromPost")
 
 const allPostsSlice = createSlice(({
     name: "posts",
