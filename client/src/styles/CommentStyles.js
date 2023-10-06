@@ -1,5 +1,18 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  .OPTIONS{
+    display: none;
+  }
+  &:hover{
+    .OPTIONS{
+
+      display: flex;
+    }
+
+  }
+`;
+
 export const CommentContainer = styled.div`
   display: flex;
   align-items: flex-start;
@@ -32,5 +45,12 @@ export const LikesDisplay = styled.p`
 `;
 
 export const CommentOptions = styled.div`
+  justify-content: center;
+  padding-top:3px;
+  padding-left: 5px
+`;
+
+export const BottomOfCommentSection = styled.div`
+  display: flex;
 
 `;
