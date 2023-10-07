@@ -21,27 +21,18 @@ export const OptionsDisplayContainer = styled.div`
 `;
 
 export const OptionsContent = styled.div`
-    /* height: 96px; */
-    /* background-color: #fff; */
     display: flex;
     justify-content: center;
     max-width: 400px;
     width:100%;
     flex-flow: column nowrap;
-    /* border-radius: 16px; */
     position: relative;
-    /* gap: 5px; */
     overflow:hidden;
 
     .delete{
         color:rgb(237, 73, 86);
-
-    }
-
-    .edit{
         border: 1px solid #ccc;
         border-radius: 24px 24px 0px 0px; 
-
 
     }
 
