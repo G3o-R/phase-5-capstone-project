@@ -21,18 +21,6 @@ function PostDisplay({ post, onClose, showPostDisplay, comment, handleChange, ha
     <Comment commentData={comment} key={comment.id} />
   ));
 
-  useEffect(() => {
-    if (showPostDisplay) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [showPostDisplay]);
-
   return (
     <PostDisplayContainer
       className={`post-display ${showPostDisplay ? "active" : ""}`}

@@ -42,6 +42,9 @@ function PostCard({ post }) {
         comment: comment,
         post_id: id
       }
+      setComment({
+        comment: ""
+      })
       dispatch(addComment(commentToPost))
     }
 

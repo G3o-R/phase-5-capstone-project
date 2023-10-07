@@ -15,10 +15,6 @@ function OptionsDisplay({ commentData, onClose }) {
         onClose()
     }
 
-    function handleEditComment(){
-        console.log("edit")
-    }
-  
     return (
       <OptionsDisplayContainer className="active">
         <CloseButton onClick={onClose}>x</CloseButton>
