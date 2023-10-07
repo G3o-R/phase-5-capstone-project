@@ -136,6 +136,7 @@ export const AddCommentTextPostDisplay = styled.form`
     border: none;
     border-radius: 4px;
     padding: 8px 16px;
+    margin-right: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 
