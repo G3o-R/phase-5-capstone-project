@@ -1,2 +1,0 @@
-class CommentRepliesController < ApplicationController
-end
