@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
-import { deleteComment } from "./commentsSlice";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
     try {
@@ -12,6 +11,26 @@ export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
         return response.json()
     } catch (error) {
         return thunkAPI.rejectWithValue("An error occurred getting posts")
+    }
+})
+
+export const likePost = createAsyncThunk("posts/likePost", async (id, thunkApi) =>{
+    try{
+        const response = await fetch(`/posts/${id}/like`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!response.ok){
+            const errorMessage = await response.json()
+            return thunkApi.rejectWithValue(errorMessage)
+        }
+
+        return response.json()
+    } catch {
+        return thunkApi.rejectWithValue("Couldn't like comment")
     }
 })
 
@@ -30,6 +49,7 @@ const allPostsSlice = createSlice(({
     },
     extraReducers: (builder) => {
         builder
+        //gets posts
         .addCase(getPosts.pending, (state) => {
             state.loading = true;
         })
@@ -43,6 +63,29 @@ const allPostsSlice = createSlice(({
             state.posts = null;
             state.error = [];
         })
+        // likes a post
+        .addCase(likePost.pending, (state) => {
+            state.loading = true;
+            state.error = false;
+        })
+        .addCase(likePost.fulfilled, (state, action) => {
+            const {id} = action.payload
+            const updatedPostsArray = state.posts.map((post) => {
+                if (post.id === id){
+                    return post = action.payload
+
+                }
+                else { return post}
+            })
+            state.posts = updatedPostsArray;
+            state.error = [];
+            state.loading = false
+        })
+        .addCase(likePost.rejected, (state,action) => {
+            state.loading = false;
+            state.error = action.payload;
+        })
+        // handles comments on posts
         .addCase(updatePostWithNewComment, (state,action) => {
             const {post_id, comment } = action.payload
             const updatedPosts = state.posts.map((post)=>{

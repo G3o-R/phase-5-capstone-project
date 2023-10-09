@@ -29,10 +29,10 @@ class PostsController < ApplicationController
       
         if like
           like.destroy
-          render json: { message: "You have unliked this post" }, status: :ok
+          render json: post, status: :ok
         else
           like = @current_user.likes.create(likable: post)
-          render json: like, status: :created
+          render json: post, status: :created
         end
       end
       

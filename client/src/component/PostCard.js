@@ -1,5 +1,6 @@
 import { ReactComponent as LikeSVG } from "../images/Like.svg"
 import { ReactComponent as CommentSVG } from "../images/Comment.svg"
+import { ReactComponent as Unlike } from "../images/Unlike.svg"
 import {
     PostCardContainer,
     UserName,
@@ -17,6 +18,7 @@ import {
 import { useState } from "react";
 import { useDispatch} from "react-redux";
 import { addComment } from "../redux/features/commentsSlice.js";
+import { likePost } from "../redux/features/allPostsSlice";
 
 import PostDisplay from "./PostDisplay";
 
@@ -24,7 +26,7 @@ function PostCard({ post }) {
     const dispatch = useDispatch()
     const [showPostDisplay, setShowPostDisplay] = useState(false)
 
-    const { comments, description, image, likes, user, id } = post;
+    const { comments, description, image, likes, user, id, users_liked } = post;
     const [commentData, setComment] = useState({
       comment: ""
     })
@@ -50,14 +52,10 @@ function PostCard({ post }) {
 
     function handleLike(e){
       e.preventDefault()
-      fetch(`/posts/${id}/like`,{
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-
+      dispatch(likePost(id))
     }
+
+    const likeOrUnLike = users_liked.includes(user) ? <Unlike /> : <LikeSVG /> 
 
 
 
@@ -71,7 +69,7 @@ function PostCard({ post }) {
         <BottomPostSection name="bottom-post-section">
           <LikeAndCommentButtons name="like-and-comment-btns">
             <LikeButton onClick={handleLike}>
-              <LikeSVG />
+              {likeOrUnLike}
             </LikeButton>
             <CommentButton onClick={() => setShowPostDisplay(!showPostDisplay)}>
               <CommentSVG />
