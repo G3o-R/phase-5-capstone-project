@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  # resources :comment_replies
   resources :comments
-  resources :posts
+  resources :posts do
+    member do
+      post 'like'
+    end
+  end
   resources :users
 
   post "/login", to: "sessions#create"

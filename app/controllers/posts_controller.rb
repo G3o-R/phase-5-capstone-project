@@ -23,11 +23,19 @@ class PostsController < ApplicationController
         head :no_content
     end
 
-    def like 
+    def like
         post = Post.find(params[:id])
-        like = posts.likes.create(user:@current_user)
-        render json: like, status: :created
-    end
+        like = Like.find_by(user: @current_user, likable: post)
+      
+        if like
+          like.destroy
+          render json: { message: "You have unliked this post" }, status: :ok
+        else
+          like = @current_user.likes.create(likable: post)
+          render json: like, status: :created
+        end
+      end
+      
 
     private 
 

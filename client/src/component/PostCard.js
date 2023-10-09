@@ -48,6 +48,17 @@ function PostCard({ post }) {
       dispatch(addComment(commentToPost))
     }
 
+    function handleLike(e){
+      e.preventDefault()
+      fetch(`/posts/${id}/like`,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+
+    }
+
 
 
     return (
@@ -59,7 +70,7 @@ function PostCard({ post }) {
         </PostContainer>
         <BottomPostSection name="bottom-post-section">
           <LikeAndCommentButtons name="like-and-comment-btns">
-            <LikeButton onClick={() => console.log("click like btn")}>
+            <LikeButton onClick={handleLike}>
               <LikeSVG />
             </LikeButton>
             <CommentButton onClick={() => setShowPostDisplay(!showPostDisplay)}>
