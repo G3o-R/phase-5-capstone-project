@@ -8,8 +8,7 @@ class PostsController < ApplicationController
 
     def index
         posts = Post.all
-        # need to work on getting comment replies 
-        render json: posts #, ['comments', 'comments.comment_replies']
+        render json: posts
     end
 
     def update 
@@ -22,6 +21,12 @@ class PostsController < ApplicationController
         post = @current_user.posts.find(params[:id])
         post.destroy
         head :no_content
+    end
+
+    def like 
+        post = Post.find(params[:id])
+        like = posts.likes.create(user:@current_user)
+        render json: like, status: :created
     end
 
     private 
