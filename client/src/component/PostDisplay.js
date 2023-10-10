@@ -59,6 +59,7 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
       })
       dispatch(addComment(commentToPost))
     }
+    console.log(user)
 
   const likeOrUnLike = users_liked.includes(user) ? <Unlike /> : <LikeSVG /> 
 

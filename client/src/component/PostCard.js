@@ -16,7 +16,7 @@ import {
     AddCommentText
 } from "../styles/PostCardStyles.js"
 import { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { addComment } from "../redux/features/commentsSlice.js";
 import { likePost } from "../redux/features/allPostsSlice";
 
@@ -25,8 +25,9 @@ import PostDisplay from "./PostDisplay";
 function PostCard({ post }) {
     const dispatch = useDispatch()
     const [showPostDisplay, setShowPostDisplay] = useState(false)
+    const {user} = useSelector((state)=>state.user)
 
-    const { comments, description, image, likes, user, id, users_liked } = post;
+    const { comments, description, image, likes, username, id, users_liked } = post;
     const [commentData, setComment] = useState({
       comment: ""
     })
@@ -55,16 +56,16 @@ function PostCard({ post }) {
       dispatch(likePost(id))
     }
 
-    const likeOrUnLike = users_liked.includes(user) ? <Unlike /> : <LikeSVG /> 
+    const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 
 
 
 
     return (
       <>
       <PostCardContainer name="post-card">
-        <UserName name="users-name">{user}</UserName>
+        <UserName name="users-name">{username}</UserName>
         <PostContainer name="post-container">
-          <img src={image} alt={`${user}'s post`} name="post" />
+          <img src={image} alt={`${username}'s post`} name="post" />
         </PostContainer>
         <BottomPostSection name="bottom-post-section">
           <LikeAndCommentButtons name="like-and-comment-btns">
