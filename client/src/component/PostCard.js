@@ -98,10 +98,7 @@ function PostCard({ post }) {
       {showPostDisplay? <PostDisplay
        post={post} 
        onClose={() => setShowPostDisplay(false)}
-       comment={comment}
-       showPostDisplay={showPostDisplay}
-       handleCommentSubmit={handleCommentSubmit} 
-       handleChange={handleChange}/>: null}
+       showPostDisplay={showPostDisplay}/>: null}
       </>
     );
   }

@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
+import { addComment } from "../redux/features/commentsSlice.js";
+
 import {
   PostDisplayContainer,
   PostDisplayContent,
@@ -16,6 +18,7 @@ import {
   LikeButton,
   CommentButton
 } from "../styles/PostCardStyles.js"
+
 import Comment from "./Comment";
 import { ReactComponent as LikeSVG } from "../images/Like.svg"
 import { ReactComponent as CommentSVG } from "../images/Comment.svg"
@@ -23,21 +26,44 @@ import { ReactComponent as Unlike } from "../images/Unlike.svg"
 import { useDispatch } from "react-redux";
 import { likePost } from "../redux/features/allPostsSlice.js";
 
-function PostDisplay({ post, onClose, showPostDisplay, comment, handleChange, handleCommentSubmit }) {
-  const { comments, description, image, user, users_liked, id } = post;
+function PostDisplay({ post, onClose, showPostDisplay }) {
+  const textareaRef = useRef(null);
   const dispatch = useDispatch()
+  const [commentData, setComment] = useState({ comment: "" })
+  const {comment} = commentData
+
+  const { comments, description, image, user, users_liked, id } = post;
 
   const commentsDisplay = comments.map((comment) => (
     <Comment commentData={comment} key={comment.id} />
-  ));
+    ));
+
+    function handleLike(){
+      dispatch(likePost(id))
+    }
+
+    function handleChange(e){
+      let name = e.target.name
+      let value = e.target.value
+      setComment({...commentData, [name]:value})
+    }
+
+    function handleCommentSubmit(e){
+      e.preventDefault()
+      const commentToPost = {
+        comment: comment,
+        post_id: id
+      }
+      setComment({
+        comment: ""
+      })
+      dispatch(addComment(commentToPost))
+    }
 
   const likeOrUnLike = users_liked.includes(user) ? <Unlike /> : <LikeSVG /> 
 
-  const textareaRef = useRef(null);
 
-  function handleLike(){
-    dispatch(likePost(id))
-  }
+
 
   return (
     <PostDisplayContainer

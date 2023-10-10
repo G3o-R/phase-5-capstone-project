@@ -42,7 +42,7 @@ export const Post = styled.div`
   }
 `;
 
-export const PostLink = styled(Link)`
+export const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
   object-fit: cover;

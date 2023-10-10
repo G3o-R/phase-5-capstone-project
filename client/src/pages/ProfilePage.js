@@ -1,11 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import { useSelector } from "react-redux";
 import {
   ProfilePageContainer,
   PostRow,
   Post,
   PostsContainer,
-  PostLink,
+  ImageContainer,
   ProfileHeader,
   ProfileInfo,
   EditProfileButton,
@@ -17,15 +17,17 @@ import {
 
 import ProfileIcon from "../component/ProfileIcon";
 import ProfileImage from "../images/ProfileImage.jpg";
+import PostDisplay from "../component/PostDisplay";
 
 function ProfilePage() {
   const { user } = useSelector((state) => state.user);
+  const [showPostDisplay, setShowPostDisplay] = useState(false)
 
   const displayUserPosts = user.user_posts.map((post, index) => (
     <Post key={post.id}>
-      <PostLink to={`/p/${post.id}`}>
+      <ImageContainer >
         <img src={post.image} alt="content" />
-      </PostLink>
+      </ImageContainer>
     </Post>
   ));
 
@@ -48,6 +50,7 @@ function ProfilePage() {
   ));
 
   return (
+    <>
     <ProfilePageContainer>
       <ProfileHeader>
         <ProfileIcon size={"big"} profilePicture={ProfileImage} />
@@ -69,6 +72,12 @@ function ProfilePage() {
       </ProfileHeader>
       <PostsContainer>{renderedRows}</PostsContainer>
     </ProfilePageContainer>
+    {/* {showPostDisplay ? null: <PostDisplay
+       onClose={()=> setShowPostDisplay(false) 
+       showPostDisplay={showPostDisplay}
+       
+       /> } */}
+    </>
   );
 }
 
