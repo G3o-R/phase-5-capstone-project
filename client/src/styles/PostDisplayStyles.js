@@ -111,13 +111,16 @@ export const ImageContainer = styled.div`
   background-color: black;
 `;
 
+export const BottomSectionSideBar = styled.section`
+  margin-top:auto;
+`;
+
 export const AddCommentTextPostDisplay = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-bottom: 5px;
   height: auto;
-  margin-top:auto;
 
   textarea {
     flex-grow: 1;
@@ -145,3 +148,4 @@ export const AddCommentTextPostDisplay = styled.form`
     }
   }
 `;
+

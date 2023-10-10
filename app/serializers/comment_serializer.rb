@@ -1,5 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :post_id, :user_id, :comment, :likes, :username
+  attributes :id, :post_id, :user_id, :comment, :likes, :username, :users_liked
   # belongs_to :post
   # belongs_to :user
 
@@ -9,5 +9,8 @@ class CommentSerializer < ActiveModel::Serializer
 
   def likes 
     object.likes.length
+  end
+  def users_liked
+    object.likes.map { |like| like.user.username }
   end
 end

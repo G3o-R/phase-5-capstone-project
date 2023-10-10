@@ -104,17 +104,14 @@ const userSlice = createSlice({
         // get me the user
         .addCase(getMe.pending, (state) => {
             state.loading = true;
-            // console.log("pending")
             state.error = [];
         })
         .addCase(getMe.fulfilled, (state, action) => {
             state.loading = false;
-            // console.log("I am here")
             state.user = action.payload
         })
         .addCase(getMe.rejected, (state, action) => {
             state.loading = false;
-            // console.log("rejected")
             state.user = null
             state.error = action.payload
         })

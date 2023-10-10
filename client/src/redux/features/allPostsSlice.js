@@ -36,6 +36,7 @@ export const likePost = createAsyncThunk("posts/likePost", async (id, thunkApi) 
 
 export const updatePostWithNewComment = createAction("posts/updatePostWithNewComment")
 export const removeCommentFromPost = createAction("posts/removeCommentFromPost")
+export const updateLikesOnComments = createAction("posts/handleLikesOnComments")
 
 const allPostsSlice = createSlice(({
     name: "posts",
@@ -107,6 +108,30 @@ const allPostsSlice = createSlice(({
             });
             state.posts = updatedPosts
         })
+        .addCase(updateLikesOnComments, (state, action) => {
+            const { newComment } = action.payload;
+          
+            const updatedPosts = state.posts.map((post) => {
+              if (newComment.post_id === post.id) {
+                const updatedPost = {
+                  ...post,
+                  comments: post.comments.map((comment) => {
+                    if (comment.id === newComment.id) {
+                      return newComment;
+                    }
+                    return comment;
+                  })
+                };
+          
+                return updatedPost;
+              }
+          
+              return post;
+            });
+          
+            state.posts = updatedPosts;
+            state.error = [];
+          })
     }
 }))
 

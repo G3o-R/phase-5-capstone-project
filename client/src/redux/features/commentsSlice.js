@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import { updatePostWithNewComment, removeCommentFromPost } from "./allPostsSlice"
+import { updatePostWithNewComment, removeCommentFromPost, updateLikesOnComments } from "./allPostsSlice"
 
 export const addComment = createAsyncThunk("comment/addComment", async (commentData, thunkAPI) => {
     try {
@@ -47,6 +47,28 @@ export const deleteComment = createAsyncThunk("comment/deleteComment", async (co
     }
 })
 
+export const likeComment = createAsyncThunk("posts/likeComment", async (commentData, thunkApi) =>{
+    try{
+        const response = await fetch(`/comments/${commentData.id}/like`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!response.ok){
+            const errorMessage = await response.json()
+            return thunkApi.rejectWithValue(errorMessage)
+        }
+
+        const newComment = await response.json()
+        thunkApi.dispatch(updateLikesOnComments({newComment}))
+        return response.json()
+    } catch {
+        return thunkApi.rejectWithValue("Couldn't like comment")
+    }
+})
+
 const commentsSlice = createSlice(({
     name: "comments",
     initialState: {
@@ -64,11 +86,6 @@ const commentsSlice = createSlice(({
             state.loading = true;
             state.error = [];
         })
-        // .addCase(addComment.fulfilled, (state, action) => {
-        //     state.loading = false;
-        //     state.comments = [...state.comments,action.payload];
-        //     state.error = []
-        // })
         .addCase(addComment.rejected, (state, action) => {
             state.loading = false;
             state.user = null;
@@ -79,15 +96,19 @@ const commentsSlice = createSlice(({
             state.loading = true;
             state.error = [];
         })
-        // .addCase(deleteComment.fulfilled, (state, action) => {
 
-        //     state.loading = false;
-        //     state.error = [];
-        //     state.comments = 
-        // })
         .addCase(deleteComment.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload;
+        })
+        // like a comment
+        .addCase(likeComment.pending, (state) => {
+            state.loading = true;
+            state.error = [];
+        })
+        .addCase(likeComment.rejected, (state, action) => {
+            state.error = action.payload;
+            state.loading = [];
         })
 
     }

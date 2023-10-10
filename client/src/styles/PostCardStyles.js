@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { ReactComponent as LikeSVG } from "../images/Like.svg";
-import { ReactComponent as CommentSVG } from "../images/Comment.svg";
 
 export const PostCardContainer = styled.div`
   border-radius: 1px;

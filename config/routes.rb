@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :comments
+  resources :comments do
+    member do
+      post 'like'
+    end
+  end
   resources :posts do
     member do
       post 'like'

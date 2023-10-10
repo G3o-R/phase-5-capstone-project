@@ -34,7 +34,7 @@ class PostsController < ApplicationController
           like = @current_user.likes.create(likable: post)
           render json: post, status: :created
         end
-      end
+    end
       
 
     private 
