@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   PostDisplayContainer,
   PostDisplayContent,
@@ -11,15 +11,12 @@ import {
   AddCommentTextPostDisplay,
   BottomSectionSideBar,
 } from "../styles/PostDisplayStyles.js";
-
 import {
   LikeAndCommentButtons,
   LikeButton,
   CommentButton
 } from "../styles/PostCardStyles.js"
-
 import Comment from "./Comment";
-
 import { ReactComponent as LikeSVG } from "../images/Like.svg"
 import { ReactComponent as CommentSVG } from "../images/Comment.svg"
 import { ReactComponent as Unlike } from "../images/Unlike.svg"
@@ -36,10 +33,11 @@ function PostDisplay({ post, onClose, showPostDisplay, comment, handleChange, ha
 
   const likeOrUnLike = users_liked.includes(user) ? <Unlike /> : <LikeSVG /> 
 
+  const textareaRef = useRef(null);
+
   function handleLike(){
     dispatch(likePost(id))
   }
-
 
   return (
     <PostDisplayContainer
@@ -56,26 +54,27 @@ function PostDisplay({ post, onClose, showPostDisplay, comment, handleChange, ha
             <h3>{description}</h3>
           </UserInfo>
           <CommentsList>{commentsDisplay}</CommentsList>
-            <BottomSectionSideBar>
+          <BottomSectionSideBar>
             <LikeAndCommentButtons name="like-and-comment-btns">
-            <LikeButton onClick={handleLike}>
-              {likeOrUnLike}
-            </LikeButton>
-            <CommentButton>
-              <CommentSVG />
-            </CommentButton>
-          </LikeAndCommentButtons>
-          <AddCommentTextPostDisplay onSubmit={handleCommentSubmit}>
+              <LikeButton onClick={handleLike}>
+                {likeOrUnLike}
+              </LikeButton>
+              <CommentButton onClick={() => textareaRef.current.focus()}>
+                <CommentSVG />
+              </CommentButton>
+            </LikeAndCommentButtons>
+            <AddCommentTextPostDisplay onSubmit={handleCommentSubmit}>
               <textarea
-               type="text" 
-               value={comment} 
-               name="comment" 
-               placeholder="Add a comment.." 
-               onChange={handleChange} 
-               ></textarea>
-               {comment.length > 0 ? <button type="submit" name="post-comment">Post</button>:null}
+                ref={textareaRef}
+                type="text"
+                value={comment}
+                name="comment"
+                placeholder="Add a comment.."
+                onChange={handleChange}
+              ></textarea>
+              {comment.length > 0 ? <button type="submit" name="post-comment">Post</button> : null}
             </AddCommentTextPostDisplay>
-               </BottomSectionSideBar>
+          </BottomSectionSideBar>
         </PostSideBar>
       </PostDisplayContent>
     </PostDisplayContainer>
