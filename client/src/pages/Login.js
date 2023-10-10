@@ -7,19 +7,21 @@ import {
   LoginForm,
   Title,
   FormGroup,
+  ShowButton,
+  ButtonContainer,
   Input,
   SubmitButton,
   SignUpContainer,
   SignUpLink,
 } from "../styles/LoginStyles";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../redux/features/userSlice";
 
 
 function Login() {
   const dispatch = useDispatch()
-
+  const [showPassword, setShowPassword] = useState(false)
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -42,6 +44,18 @@ function Login() {
     });
   }
 
+  const showButton = (
+    <ButtonContainer>
+      {password.length > 0 ? 
+      <ShowButton type="button" onClick={() => setShowPassword(!showPassword)}>
+        {showPassword ? "Hide" : "Show"}
+      </ShowButton> :
+      null
+      }
+    </ButtonContainer>
+  );
+  
+
   return (
     <LoginPage>
     <ContainerWrapper>
@@ -60,13 +74,14 @@ function Login() {
           </FormGroup>
           <FormGroup>
             <Input
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               name="password"
               value={password}
               placeholder="Password..."
               onChange={handleChange}
             />
+            {showButton}
           </FormGroup>
           <SubmitButton type="submit">Log in</SubmitButton>
         </LoginForm>
