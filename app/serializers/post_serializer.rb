@@ -1,6 +1,6 @@
 class PostSerializer < ActiveModel::Serializer
   attributes :id, :image, :description, :likes, :user, :users_liked
-  has_many :comments
+  has_many :comments, serializer: CommentSerializer
 
   def user
     object.user.username

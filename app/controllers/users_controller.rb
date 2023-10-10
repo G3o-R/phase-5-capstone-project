@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        render json: @current_user, include: ['posts','posts.comments']
+        render json: @current_user, include: ['user_posts','user_posts.comments']
     end
 
     def update

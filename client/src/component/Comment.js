@@ -19,16 +19,16 @@ import OptionsDisplay from "./OptionsDisplay";
 import { likeComment } from "../redux/features/commentsSlice";
 
 function Comment({commentData}){
-    const { comment, likes, username, users_liked, id } = commentData
+    const { comment, likes, username, users_liked} = commentData
     const {user} = useSelector((state)=>state.user)
     const [showOptions, setShowOptions] = useState(false)
-    console.log(commentData)
 
     const dispatch = useDispatch()
 
     function handleLikeComment(){
       dispatch(likeComment(commentData))
     }
+    // debugger
     const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 
 
 

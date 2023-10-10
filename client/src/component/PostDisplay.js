@@ -33,7 +33,8 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
   const {comment} = commentData
 
   const { comments, description, image, user, users_liked, id } = post;
-
+  
+  // debugger
   const commentsDisplay = comments.map((comment) => (
     <Comment commentData={comment} key={comment.id} />
     ));
