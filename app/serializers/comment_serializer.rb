@@ -1,7 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
   attributes :id, :post_id, :user_id, :comment, :likes, :username, :users_liked
-  # belongs_to :post
-  # belongs_to :user
 
   def username
     object.user.username

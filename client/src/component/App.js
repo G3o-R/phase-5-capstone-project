@@ -35,7 +35,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<ProfilePage/>} />
+        <Route path={`/${user.username}`} element={<ProfilePage/>} />
       </Routes>
       </BrowserRouter>
     </div>

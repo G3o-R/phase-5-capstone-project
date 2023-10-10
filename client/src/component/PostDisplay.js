@@ -23,16 +23,17 @@ import Comment from "./Comment";
 import { ReactComponent as LikeSVG } from "../images/Like.svg"
 import { ReactComponent as CommentSVG } from "../images/Comment.svg"
 import { ReactComponent as Unlike } from "../images/Unlike.svg"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { likePost } from "../redux/features/allPostsSlice.js";
 
 function PostDisplay({ post, onClose, showPostDisplay }) {
   const textareaRef = useRef(null);
   const dispatch = useDispatch()
+  const {user} = useSelector((state) => state.user)
   const [commentData, setComment] = useState({ comment: "" })
   const {comment} = commentData
 
-  const { comments, description, image, user, users_liked, id } = post;
+  const { comments, description, image, username, users_liked, id } = post;
   
   const commentsDisplay = comments.map((comment) => (
     <Comment commentData={comment} key={comment.id} />
@@ -59,9 +60,8 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
       })
       dispatch(addComment(commentToPost))
     }
-    console.log(user)
 
-  const likeOrUnLike = users_liked.includes(user) ? <Unlike /> : <LikeSVG /> 
+  const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 
 
 
 
@@ -73,11 +73,11 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
       <CloseButton onClick={onClose}>×</CloseButton>
       <PostDisplayContent>
         <ImageContainer>
-          <PostImage src={image} alt={`${user}'s post`} />
+          <PostImage src={image} alt={`${username}'s post`} />
         </ImageContainer>
         <PostSideBar>
           <UserInfo>
-            <h3>{user}</h3>
+            <h3>{username}</h3>
             <h3>{description}</h3>
           </UserInfo>
           <CommentsList>{commentsDisplay}</CommentsList>

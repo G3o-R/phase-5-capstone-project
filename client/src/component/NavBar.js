@@ -49,7 +49,7 @@ function NavBar() {
           <ExploreSVG/> Explore
         </NavLink>
         <NavLink
-          to="/profile"
+          to={`/${user.username}`}
           className={location.pathname === "/profile" ? "active" : ""}
         >
           Profile

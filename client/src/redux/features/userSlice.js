@@ -66,7 +66,7 @@ export const getMe = createAsyncThunk("user/getMe", async (thunkAPI)=>{
 });
 
 const userSlice = createSlice({
-    name: "current_user",
+    name: "user",
     initialState: {
         user: null,
         loading: false,
