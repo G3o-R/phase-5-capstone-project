@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 
 export const getAllUsers = createAsyncThunk("allUsers/getAllUsers", async ()=>{
     return fetch("/users").then((res) => 
@@ -19,6 +19,8 @@ export const getUser = createAsyncThunk("allUsers/getUser", async (username, thu
         return thunkAPI.rejectWithValue("couldn't get user")
     }
 });
+
+export const updateUsersPostsLikes = createAction("allUsers/updateUsersPostsLikes")
 
 const allUsersSlice = createSlice(({
     name: "allUsers",
@@ -49,14 +51,26 @@ const allUsersSlice = createSlice(({
         .addCase(getUser.pending, (state) => {
             state.loading = true;
             state.errors = []
-            console.log("pending")
-
         })
         .addCase(getUser.fulfilled, (state, action) => {
             state.singleUser = action.payload;
             state.loading = false
-            console.log("fullfilled")
         })
+        .addCase(updateUsersPostsLikes, (state, action) => {
+            const { id } = action.payload;
+            const updatedPosts = state.singleUser.user_posts.map((post) => {
+                if (post.id === id) {
+                    return { ...post, ...action.payload };
+                } else {
+                    return post;
+                }
+            });
+            // console.log(updatedPosts)
+            state.singleUser.user_posts = updatedPosts;
+            state.errors = [];
+        })
+        
+        
 
     },
 }));

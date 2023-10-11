@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
+import { updateUsersPostsLikes } from "./allUsersSlice";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
     try {
@@ -28,7 +29,10 @@ export const likePost = createAsyncThunk("posts/likePost", async (id, thunkApi) 
             return thunkApi.rejectWithValue(errorMessage)
         }
 
-        return response.json()
+        const likedPost = await response.json()
+        // for some reason including this line prevents liking
+        thunkApi.dispatch(updateUsersPostsLikes(likedPost))
+        return likedPost
     } catch {
         return thunkApi.rejectWithValue("Couldn't like comment")
     }
@@ -70,6 +74,7 @@ const allPostsSlice = createSlice(({
             state.error = false;
         })
         .addCase(likePost.fulfilled, (state, action) => {
+            // debugger
             const {id} = action.payload
             const updatedPostsArray = state.posts.map((post) => {
                 if (post.id === id){

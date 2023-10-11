@@ -29,7 +29,7 @@ import { likePost } from "../redux/features/allPostsSlice.js";
 function PostDisplay({ post, onClose, showPostDisplay }) {
   const textareaRef = useRef(null);
   const dispatch = useDispatch()
-  const {user} = useSelector((state) => state.user)
+  const {singleUser} = useSelector((state) => state.allUsers)
   const [commentData, setComment] = useState({ comment: "" })
   const {comment} = commentData
 
@@ -61,8 +61,9 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
       dispatch(addComment(commentToPost))
     }
 
-  const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 
-
+  const likeOrUnLike = users_liked.includes(singleUser.username) ? <Unlike /> : <LikeSVG /> 
+// console.log(users_liked)
+// console.log(singleUser.username)
 
 
 
