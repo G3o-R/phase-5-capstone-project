@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logOutUser } from "../redux/features/userSlice";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -7,32 +7,37 @@ import {
   NavLinks,
   NavLink,
   LogoutButton,
-  LoginLink,
-  AppName
+  AppName,
+  MoreContainer,
+  MoreTab
 } from "../styles/NavBarStyles";
 
 import {ReactComponent as HomeSVG} from "../images/Home.svg"
 import {ReactComponent as SearchSVG} from "../images/Search.svg"
 import {ReactComponent as ExploreSVG} from "../images/Explore.svg"
+import {ReactComponent as More} from "../images/Settings.svg"
 
 function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const location = useLocation();
+  const [showMore, SetShowMore] = useState(false)
 
   function handleLogOut() {
     dispatch(logOutUser());
     navigate("/")
+    console.log("logout")
   }
 
   return (
+    <>
     <StyledNavBar>
-      <AppName>CodeGram</AppName> {/* Use AppName for app name */}
+      <AppName>CodeGram</AppName>
       <NavLinks>
         <NavLink
           to="/"
-          className={location.pathname === "/" ? "active" : ""} // Apply "active" class based on location
+          className={location.pathname === "/" ? "active" : ""}
         >
           <HomeSVG/> Home
         </NavLink>
@@ -43,24 +48,21 @@ function NavBar() {
           <SearchSVG/> Search
         </NavLink>
         <NavLink
-          to="/explore"
-          className={location.pathname === "/explore" ? "active" : ""}
-        >
-          <ExploreSVG/> Explore
-        </NavLink>
-        <NavLink
           to={`/${user.username}`}
           className={location.pathname === "/profile" ? "active" : ""}
         >
           Profile
         </NavLink>
       </NavLinks>
-      {user ? (
-        <LogoutButton onClick={handleLogOut}>Log Out</LogoutButton>
-      ) : (
-        <LoginLink to="/">Login</LoginLink>
-      )}
+      <MoreContainer onClick={()=>SetShowMore(!showMore)}>
+        <More /> More
+      </MoreContainer>
+      {showMore ? <MoreTab>
+          <LogoutButton onClick={handleLogOut} className="btns">Log Out</LogoutButton>
+          <NavLink to="/create-post" className="btns">Create Post</NavLink>
+      </MoreTab> : null}
     </StyledNavBar>
+    </>
   );
 }
 
