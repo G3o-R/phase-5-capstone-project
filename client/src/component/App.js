@@ -14,7 +14,6 @@ function App() {
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(getMe())
-    dispatch(getAllUsers())
   },[])
   const { user, loading } = useSelector((state) => state.user)
 

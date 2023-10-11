@@ -15,6 +15,7 @@ export const ProfilePageContainer = styled.div`
 
 export const PostRow = styled.div`
   display: flex;
+  width: 930px;
   flex-direction: row;
   gap: 16px;
   align-items: center;

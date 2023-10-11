@@ -21,9 +21,11 @@ import { addComment } from "../redux/features/commentsSlice.js";
 import { likePost } from "../redux/features/allPostsSlice";
 
 import PostDisplay from "./PostDisplay";
+import { useNavigate } from "react-router-dom";
 
 function PostCard({ post }) {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [showPostDisplay, setShowPostDisplay] = useState(false)
     const {user} = useSelector((state)=>state.user)
 
@@ -63,7 +65,7 @@ function PostCard({ post }) {
     return (
       <>
       <PostCardContainer name="post-card">
-        <UserName name="users-name">{username}</UserName>
+        <UserName name="users-name" onClick={()=>navigate(`/${username}`)}>{username}</UserName>
         <PostContainer name="post-container">
           <img src={image} alt={`${username}'s post`} name="post" />
         </PostContainer>

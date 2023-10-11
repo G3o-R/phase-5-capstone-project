@@ -33,7 +33,6 @@ function ProfilePage() {
   useEffect(() => {
     dispatch(getUser(username));
   }, [dispatch, username]);
-console.log(singleUser)
   if (loading || singleUser === null) {
     return <h1>Loading...</h1>;
   }

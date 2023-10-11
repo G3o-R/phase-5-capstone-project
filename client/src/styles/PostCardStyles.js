@@ -19,6 +19,7 @@ export const PostCardContainer = styled.div`
 export const UserName = styled.h3`
   font-size: 18px;
   margin-bottom: 8px;
+  cursor: pointer;
 `;
 
 export const PostContainer = styled.div`
