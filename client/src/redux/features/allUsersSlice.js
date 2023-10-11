@@ -21,6 +21,7 @@ export const getUser = createAsyncThunk("allUsers/getUser", async (username, thu
 });
 export const updateUsersPostsComments = createAction("allUsers/updateUsersPostComments")
 export const updateUsersPostsLikes = createAction("allUsers/updateUsersPostsLikes")
+export const removeCommentFromSingleUserPost = createAction("allUsers/removeCommentFromSingleUserPost")
 
 const allUsersSlice = createSlice(({
     name: "allUsers",
@@ -73,7 +74,6 @@ const allUsersSlice = createSlice(({
         
             const updatedUserPosts = state.singleUser.user_posts.map((post) => {
                 if (post.id === post_id) {
-                    console.log(post)
                     return {
                         ...post,
                         comments: [...post.comments, newComment]
@@ -82,7 +82,18 @@ const allUsersSlice = createSlice(({
                 return post;
             });
             state.singleUser.user_posts = updatedUserPosts;
-        });
+        })
+        .addCase(removeCommentFromSingleUserPost, (state,action) =>{
+            const {post_id, commentID} = action.payload
+            const updatedPosts = state.singleUser.user_posts.map((post) => {
+                if (post.id === post_id){
+                    // debugger
+                    const updatedCommentsArray = post.comments.filter((comment) => comment.id !== commentID)
+                    return {...post, comments: updatedCommentsArray}
+                } else {return post}
+            })
+            state.singleUser.user_posts = updatedPosts
+        })
         
         
         

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { updatePostWithNewComment, removeCommentFromPost, updateLikesOnComments } from "./allPostsSlice"
-import { updateUsersPostsComments } from "./allUsersSlice";
+import { updateUsersPostsComments, removeCommentFromSingleUserPost } from "./allUsersSlice";
 
 export const addComment = createAsyncThunk("comment/addComment", async (commentData, thunkAPI) => {
     try {
@@ -41,7 +41,9 @@ export const deleteComment = createAsyncThunk("comment/deleteComment", async (co
 
         const post_id = commentData.post_id
         const commentID = commentData.id
+
         thunkAPI.dispatch(removeCommentFromPost({post_id, commentID}))
+        thunkAPI.dispatch(removeCommentFromSingleUserPost({post_id, commentID}))
 
         return response.json()
     } catch(error) {
