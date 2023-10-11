@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 import { updatePostWithNewComment, removeCommentFromPost, updateLikesOnComments } from "./allPostsSlice"
-import { updateUsersPostsComments, removeCommentFromSingleUserPost } from "./allUsersSlice";
+import { updateUsersPostsComments, removeCommentFromSingleUserPost, handleLikesForSingleUserComment } from "./allUsersSlice";
 
 export const addComment = createAsyncThunk("comment/addComment", async (commentData, thunkAPI) => {
     try {
@@ -51,7 +51,7 @@ export const deleteComment = createAsyncThunk("comment/deleteComment", async (co
     }
 })
 
-export const likeComment = createAsyncThunk("posts/likeComment", async (commentData, thunkApi) =>{
+export const likeComment = createAsyncThunk("posts/likeComment", async (commentData, thunkAPI) =>{
     try{
         const response = await fetch(`/comments/${commentData.id}/like`, {
             method: "POST",
@@ -62,14 +62,15 @@ export const likeComment = createAsyncThunk("posts/likeComment", async (commentD
 
         if (!response.ok){
             const errorMessage = await response.json()
-            return thunkApi.rejectWithValue(errorMessage)
+            return thunkAPI.rejectWithValue(errorMessage)
         }
 
         const newComment = await response.json()
-        thunkApi.dispatch(updateLikesOnComments({newComment}))
+        thunkAPI.dispatch(updateLikesOnComments({newComment}))
+        thunkAPI.dispatch(handleLikesForSingleUserComment({newComment}))
         return response.json()
     } catch {
-        return thunkApi.rejectWithValue("Couldn't like comment")
+        return thunkAPI.rejectWithValue("Couldn't like comment")
     }
 })
 

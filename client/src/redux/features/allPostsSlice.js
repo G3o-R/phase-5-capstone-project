@@ -74,7 +74,6 @@ const allPostsSlice = createSlice(({
             state.error = false;
         })
         .addCase(likePost.fulfilled, (state, action) => {
-            // debugger
             const {id} = action.payload
             const updatedPostsArray = state.posts.map((post) => {
                 if (post.id === id){
