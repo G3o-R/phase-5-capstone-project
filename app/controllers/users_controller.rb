@@ -12,8 +12,13 @@ class UsersController < ApplicationController
         render json: User.all, include: ['user_posts','user_posts.comments']
     end
 
-    def show
+    def showMe
         render json: @current_user, include: ['user_posts','user_posts.comments']
+    end
+
+    def show
+        user = User.find_by(username: params[:username])
+        render json: user, include: ['user_posts','user_posts.comments']
     end
 
     def update

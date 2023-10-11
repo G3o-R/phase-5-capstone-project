@@ -9,11 +9,11 @@ Rails.application.routes.draw do
       post 'like'
     end
   end
-  resources :users
+  resources :users, param: :username, only: [:show]
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
-  get "/me", to: "users#show"
+  get "/me", to: "users#showMe"
   post "/signup", to: "users#create"
 
   # route "/", to: "user#index"

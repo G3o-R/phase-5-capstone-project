@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom"; // Import useParams
 import {
   ProfilePageContainer,
   PostRow,
@@ -18,13 +19,26 @@ import {
 import ProfileIcon from "../component/ProfileIcon";
 import ProfileImage from "../images/ProfileImage.jpg";
 import PostDisplay from "../component/PostDisplay";
+import { getUser } from "../redux/features/allUsersSlice";
 
 function ProfilePage() {
   const { user } = useSelector((state) => state.user);
   const [showPostDisplay, setShowPostDisplay] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
+  const dispatch = useDispatch();
 
-  const displayUserPosts = user.user_posts.map((post) => (
+  const { singleUser, loading } = useSelector((state) => state.allUsers);
+  const { username } = useParams();
+
+  useEffect(() => {
+    dispatch(getUser(username));
+  }, [dispatch, username]);
+console.log(singleUser)
+  if (loading || singleUser === null) {
+    return <h1>Loading...</h1>;
+  }
+
+  const displayUserPosts = singleUser.user_posts.map((post) => (
     <Post key={post.id} onClick={() => handlePostClick(post)}>
       <ImageContainer>
         <img src={post.image} alt="content" />
@@ -62,7 +76,7 @@ function ProfilePage() {
           <ProfileIcon size={"big"} profilePicture={ProfileImage} />
           <ProfileInfo>
             <InlineFlex className="buttons-sections">
-              <h1>{user.username}</h1>
+              <h1>{singleUser.username}</h1>
               <EditProfileButton>Edit profile</EditProfileButton>
             </InlineFlex>
             <InlineFlex className="user-info-section">
@@ -71,8 +85,8 @@ function ProfilePage() {
               <SmallText>## following</SmallText>
             </InlineFlex>
             <BioSection>
-              <SmallText>{user.username}</SmallText>
-              <BioText>{user.biography}</BioText>
+              <SmallText>{singleUser.username}</SmallText>
+              <BioText>{singleUser.biography}</BioText>
             </BioSection>
           </ProfileInfo>
         </ProfileHeader>
