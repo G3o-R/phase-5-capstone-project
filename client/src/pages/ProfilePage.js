@@ -22,14 +22,19 @@ import PostDisplay from "../component/PostDisplay";
 import { getUser } from "../redux/features/allUsersSlice";
 
 function ProfilePage() {
-  // const { user } = useSelector((state) => state.user);
   const [showPostDisplay, setShowPostDisplay] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const dispatch = useDispatch();
 
   const { singleUser, loading } = useSelector((state) => state.allUsers);
   const { username } = useParams();
-  
+  useEffect(() => {
+    if (selectedPost) {
+        const updatedPost = singleUser.user_posts.find((post) => post.id === selectedPost.id);
+        setSelectedPost(updatedPost);
+    }
+}, [singleUser, selectedPost]);
+
   useEffect(() => {
     dispatch(getUser(username));
   }, [dispatch, username]);
@@ -37,7 +42,7 @@ function ProfilePage() {
   if (loading || singleUser === null) {
     return <h1>Loading...</h1>;
   }
-  console.log(singleUser)
+
   const displayUserPosts = singleUser.user_posts.map((post) => (
     <Post key={post.id} onClick={() => handlePostClick(post)}>
       <ImageContainer>
