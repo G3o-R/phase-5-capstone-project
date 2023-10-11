@@ -27,6 +27,7 @@ function ProfilePage() {
   const dispatch = useDispatch();
 
   const { singleUser, loading } = useSelector((state) => state.allUsers);
+
   const { username } = useParams();
   useEffect(() => {
     if (selectedPost) {

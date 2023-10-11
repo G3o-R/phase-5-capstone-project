@@ -19,7 +19,7 @@ export const getUser = createAsyncThunk("allUsers/getUser", async (username, thu
         return thunkAPI.rejectWithValue("couldn't get user")
     }
 });
-
+export const updateUsersPostsComments = createAction("allUsers/updateUsersPostComments")
 export const updateUsersPostsLikes = createAction("allUsers/updateUsersPostsLikes")
 
 const allUsersSlice = createSlice(({
@@ -65,10 +65,25 @@ const allUsersSlice = createSlice(({
                     return post;
                 }
             });
-            // console.log(updatedPosts)
             state.singleUser.user_posts = updatedPosts;
             state.errors = [];
         })
+        .addCase(updateUsersPostsComments, (state, action) => {
+            const { post_id, newComment } = action.payload;
+        
+            const updatedUserPosts = state.singleUser.user_posts.map((post) => {
+                if (post.id === post_id) {
+                    console.log(post)
+                    return {
+                        ...post,
+                        comments: [...post.comments, newComment]
+                    };
+                }
+                return post;
+            });
+            state.singleUser.user_posts = updatedUserPosts;
+        });
+        
         
         
 
