@@ -56,10 +56,10 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
         comment: comment,
         post_id: id
       }
+      dispatch(addComment(commentToPost))
       setComment({
         comment: ""
       })
-      dispatch(addComment(commentToPost))
     }
 
   const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 

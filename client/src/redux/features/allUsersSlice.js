@@ -76,7 +76,8 @@ const allUsersSlice = createSlice(({
           
         .addCase(updateUsersPostsComments, (state, action) => {
             const { post_id, newComment } = action.payload;
-        
+        if (state.singleUser){
+
             const updatedUserPosts = state.singleUser.user_posts.map((post) => {
                 if (post.id === post_id) {
                     return {
@@ -87,6 +88,8 @@ const allUsersSlice = createSlice(({
                 return post;
             });
             state.singleUser.user_posts = updatedUserPosts;
+        }
+            state.errors = []
         })
         .addCase(removeCommentFromSingleUserPost, (state,action) =>{
             const {post_id, commentID} = action.payload
