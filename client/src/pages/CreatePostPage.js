@@ -1,11 +1,11 @@
-import { CreatePostPage } from "../styles/CreatePostPageStyles"
+import { CreatePostContainer } from "../styles/CreatePostPageStyles"
 
-function CreatePost(){
+function CreatePostPage(){
     return(
-        <CreatePostPage>
+        <CreatePostContainer>
             create post
-        </CreatePostPage>
+        </CreatePostContainer>
     )
 }
 
-export default CreatePost
+export default CreatePostPage

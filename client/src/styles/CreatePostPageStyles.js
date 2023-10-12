@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CreatePostPage = styled.div`
+export const CreatePostContainer = styled.div`
     display: flex;
     flex-direction:column;
     align-items: center;

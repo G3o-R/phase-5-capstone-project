@@ -32,7 +32,8 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
   const { user } = useSelector((state) => state.user)
   const [commentData, setComment] = useState({ comment: "" })
   const {comment} = commentData
-
+  
+  console.log(post)
   const { comments, description, image, username, users_liked, id } = post;
   
   const commentsDisplay = comments.map((comment) => (

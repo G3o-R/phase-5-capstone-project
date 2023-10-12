@@ -31,7 +31,7 @@ export const likePost = createAsyncThunk("posts/likePost", async (id, thunkApi) 
 
         const likedPost = await response.json()
         // for some reason including this line prevents liking
-        thunkApi.dispatch(updateUsersPostsLikes(likedPost))
+        thunkApi.dispatch(updateUsersPostsLikes({likedPost, id: likedPost.id}))
         return likedPost
     } catch {
         return thunkApi.rejectWithValue("Couldn't like comment")
@@ -74,6 +74,7 @@ const allPostsSlice = createSlice(({
             state.error = false;
         })
         .addCase(likePost.fulfilled, (state, action) => {
+            console.log("liked")
             const {id} = action.payload
             const updatedPostsArray = state.posts.map((post) => {
                 if (post.id === id){

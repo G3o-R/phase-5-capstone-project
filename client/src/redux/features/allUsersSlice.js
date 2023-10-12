@@ -59,17 +59,21 @@ const allUsersSlice = createSlice(({
             state.loading = false
         })
         .addCase(updateUsersPostsLikes, (state, action) => {
-            const { id } = action.payload;
-            const updatedPosts = state.singleUser.user_posts.map((post) => {
+            const { likedPost, id } = action.payload;
+            
+            if (state.singleUser) {
+              const updatedPosts = state.singleUser.user_posts.map((post) => {
                 if (post.id === id) {
-                    return { ...post, ...action.payload };
+                  return { ...post, ...likedPost };
                 } else {
-                    return post;
+                  return post;
                 }
-            });
-            state.singleUser.user_posts = updatedPosts;
+              });
+              state.singleUser.user_posts = updatedPosts;
+            }
             state.errors = [];
-        })
+          })
+          
         .addCase(updateUsersPostsComments, (state, action) => {
             const { post_id, newComment } = action.payload;
         

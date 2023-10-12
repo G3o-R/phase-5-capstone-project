@@ -24,8 +24,8 @@ import PostDisplay from "./PostDisplay";
 import { useNavigate } from "react-router-dom";
 
 function PostCard({ post }) {
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
     const [showPostDisplay, setShowPostDisplay] = useState(false)
     const {user} = useSelector((state)=>state.user)
 
@@ -53,9 +53,10 @@ function PostCard({ post }) {
       dispatch(addComment(commentToPost))
     }
 
-    function handleLike(e){
-      e.preventDefault()
+    function handleLike(){
+      // e.preventDefault()
       dispatch(likePost(id))
+      // console.log(post)
     }
 
     const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 
