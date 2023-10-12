@@ -21,6 +21,7 @@ import { loginUser } from "../redux/features/userSlice";
 
 function Login() {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [loginData, setLoginData] = useState({
     username: "",
@@ -42,6 +43,7 @@ function Login() {
       username: "",
       password: "",
     });
+    navigate("/")
   }
 
   const showButton = (

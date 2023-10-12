@@ -26,8 +26,7 @@ function NavBar() {
 
   function handleLogOut() {
     dispatch(logOutUser());
-    navigate("/")
-    console.log("logout")
+    navigate("/login")
   }
 
   return (

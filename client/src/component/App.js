@@ -6,11 +6,10 @@ import SignUp from '../pages/SignUp';
 import NavBar from './NavBar';
 import CreatePostPage from '../pages/CreatePostPage';
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMe } from '../redux/features/userSlice';
-import { getAllUsers } from '../redux/features/allUsersSlice';
 
 function App() {
   const dispatch = useDispatch()
@@ -25,7 +24,8 @@ function App() {
     return(
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Login />}/>
+      <Route path="/" element={<Navigate to="/login" />} />
+      <Route path="/login" element={<Login />}/>
       <Route path= "/sign-up" element={<SignUp />} />
     </Routes>
     </BrowserRouter>

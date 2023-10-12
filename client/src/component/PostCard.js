@@ -54,9 +54,7 @@ function PostCard({ post }) {
     }
 
     function handleLike(){
-      // e.preventDefault()
       dispatch(likePost(id))
-      // console.log(post)
     }
 
     const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 
