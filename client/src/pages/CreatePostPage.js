@@ -9,8 +9,12 @@ import {
      } from "../styles/CreatePostPageStyles";
 
 import PreviewPostCard from "../component/PreviewPostCard";
+import { useDispatch } from "react-redux";
+import { createPost } from "../redux/features/allPostsSlice";
 
 function CreatePostPage() {
+    const dispatch = useDispatch()
+
     const [postData, setPostData] = useState({
       image: "",
       description: "",
@@ -20,11 +24,12 @@ function CreatePostPage() {
   
     function createPostSubmit(e) {
       e.preventDefault();
+      dispatch(createPost(postData))
   
-      setPostData({
-        image: "",
-        description: "",
-      });
+      // setPostData({
+      //   image: "",
+      //   description: "",
+      // });
     }
   
     function handleChange(e) {

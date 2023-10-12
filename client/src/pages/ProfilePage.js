@@ -26,9 +26,14 @@ function ProfilePage() {
   const [selectedPost, setSelectedPost] = useState(null);
   const dispatch = useDispatch();
 
+  const { username } = useParams();
+  useEffect(() => {
+    dispatch(getUser(username));
+    console.log("getting user")
+  }, [dispatch, username]);
   const { singleUser, loading } = useSelector((state) => state.allUsers);
 
-  const { username } = useParams();
+
   useEffect(() => {
     if (selectedPost) {
         const updatedPost = singleUser.user_posts.find((post) => post.id === selectedPost.id);
@@ -36,9 +41,6 @@ function ProfilePage() {
     }
 }, [singleUser, selectedPost]);
 
-  useEffect(() => {
-    dispatch(getUser(username));
-  }, [dispatch, username]);
   
   if (loading || singleUser === null) {
     return <h1>Loading...</h1>;

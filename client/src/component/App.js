@@ -13,9 +13,12 @@ import { getMe } from '../redux/features/userSlice';
 
 function App() {
   const dispatch = useDispatch()
-  useEffect(()=>{
-    dispatch(getMe())
-  },[])
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, []);
+
+
   const { user, loading } = useSelector((state) => state.user)
 
   if (loading && !user) {
@@ -24,13 +27,14 @@ function App() {
     return(
     <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />
+      {/* <Route path="/" element={<Navigate to="/login" />} /> */}
       <Route path="/login" element={<Login />}/>
       <Route path= "/sign-up" element={<SignUp />} />
     </Routes>
     </BrowserRouter>
       )
   }
+  // console.log(user)
 
   return (
     <div className="App">

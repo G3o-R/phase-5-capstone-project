@@ -1,24 +1,24 @@
 class PostsController < ApplicationController
-    skip_before_action :authorize, only: [:index]
+    # skip_before_action :authorize
 
     def create
-        post = @current_user.posts.create!(post_params)
+        post = @current_user.user_posts.create!(post_params)
         render json: post, status: :created
     end
 
     def index
-        posts = Post.all
+        posts = Post.all.order(created_at: :desc)
         render json: posts
     end
 
     def update 
-        post = @current_user.posts.find(params[:id])
+        post = @current_user.user_posts.find(params[:id])
         post.update!(post_params)
         render json: post
     end
 
     def destroy
-        post = @current_user.posts.find(params[:id])
+        post = @current_user.user_posts.find(params[:id])
         post.destroy
         head :no_content
     end

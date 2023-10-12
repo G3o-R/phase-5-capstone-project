@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import { updateUsersPostsLikes } from "./allUsersSlice";
+import { json } from "react-router-dom";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
     try {
@@ -35,6 +36,31 @@ export const likePost = createAsyncThunk("posts/likePost", async (id, thunkApi) 
         return likedPost
     } catch {
         return thunkApi.rejectWithValue("Couldn't like comment")
+    }
+})
+
+export const createPost = createAsyncThunk("posts/createPost", async (postData, thunkAPI) => {
+    console.log(postData)
+    try{
+        console.log("trying")
+        const response = await fetch('/posts',{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postData)
+        })
+
+        if (!response.ok){
+            console.log("not okay")
+            const errorMessage = await response.json()
+            return thunkAPI.rejectWithValue(errorMessage)
+        }
+
+        return response.json()
+    } catch{
+        console.log("error")
+        return thunkAPI.rejectWithValue("An error occurred trying to create post")
     }
 })
 
@@ -74,7 +100,6 @@ const allPostsSlice = createSlice(({
             state.error = false;
         })
         .addCase(likePost.fulfilled, (state, action) => {
-            console.log("liked")
             const {id} = action.payload
             const updatedPostsArray = state.posts.map((post) => {
                 if (post.id === id){
@@ -90,6 +115,20 @@ const allPostsSlice = createSlice(({
         .addCase(likePost.rejected, (state,action) => {
             state.loading = false;
             state.error = action.payload;
+        })
+        // posts a post lol
+        .addCase(createPost.pending, (state) => {
+            state.loading = true;
+            state.error = [];
+        })
+        .addCase(createPost.fulfilled, (state, action) => {
+            state.posts = [action.payload,...state.posts];
+            state.error = [];
+            state.loading = false;
+        })
+        .addCase(createPost.rejected, (state,action) => {
+            state.error = action.payload;
+            state.loading = false
         })
         // handles comments on posts
         .addCase(updatePostWithNewComment, (state,action) => {

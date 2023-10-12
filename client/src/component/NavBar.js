@@ -40,12 +40,11 @@ function NavBar() {
         >
           <HomeSVG/> Home
         </NavLink>
-        <NavLink
-          to="/search"
+        {/* <NavLink
           className={location.pathname === "/search" ? "active" : ""}
         >
           <SearchSVG/> Search
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/create-post"
           className={location.pathname === "/create-post" ? "active" : ""}
