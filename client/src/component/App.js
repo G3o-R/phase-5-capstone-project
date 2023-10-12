@@ -4,6 +4,8 @@ import Home from '../pages/Home';
 import ProfilePage from '../pages/ProfilePage';
 import SignUp from '../pages/SignUp';
 import NavBar from './NavBar';
+import CreatePost from '../pages/CreatePostPage';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,6 +39,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path=":username" element={<ProfilePage/>} />
+        <Route path="/create-post" element={<CreatePost/>} />
       </Routes>
       </BrowserRouter>
     </div>

@@ -14,7 +14,7 @@ import {
 
 import {ReactComponent as HomeSVG} from "../images/Home.svg"
 import {ReactComponent as SearchSVG} from "../images/Search.svg"
-import {ReactComponent as ExploreSVG} from "../images/Explore.svg"
+import {ReactComponent as Create} from "../images/Create.svg"
 import {ReactComponent as More} from "../images/Settings.svg"
 
 function NavBar() {
@@ -48,6 +48,12 @@ function NavBar() {
           <SearchSVG/> Search
         </NavLink>
         <NavLink
+          to="/create-post"
+          className={location.pathname === "/create-post" ? "active" : ""}
+        >
+          <Create/> Create
+        </NavLink>
+        <NavLink
           to={`/${user.username}`}
           className={location.pathname === "/profile" ? "active" : ""}
         >
@@ -59,7 +65,6 @@ function NavBar() {
       </MoreContainer>
       {showMore ? <MoreTab>
           <LogoutButton onClick={handleLogOut} className="btns">Log Out</LogoutButton>
-          <NavLink to="/create-post" className="btns">Create Post</NavLink>
       </MoreTab> : null}
     </StyledNavBar>
     </>
