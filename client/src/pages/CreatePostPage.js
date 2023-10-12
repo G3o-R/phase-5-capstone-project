@@ -8,6 +8,8 @@ import {
      SubmitButton
      } from "../styles/CreatePostPageStyles";
 
+import PreviewPostCard from "../component/PreviewPostCard";
+
 function CreatePostPage() {
     const [postData, setPostData] = useState({
       image: "",
@@ -56,6 +58,7 @@ function CreatePostPage() {
             <SubmitButton type="submit">Create Post</SubmitButton>
           </Form>
         </FormContainer>
+        {image.length > 0 || description.length > 0 ? <PreviewPostCard postData={postData} /> : null }
       </CreatePostContainer>
     );
   }

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const CreatePostContainer = styled.div`
   display: flex;
+  gap:40px;
   justify-content: center;
   align-items: center;
   height: 100vh;
