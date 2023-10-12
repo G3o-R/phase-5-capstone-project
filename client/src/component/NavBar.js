@@ -53,7 +53,7 @@ function NavBar() {
           <Create/> Create
         </NavLink>
         <NavLink
-          to={`/${user.username}`}
+          to={`/profile/${user.username}`}
           className={location.pathname === "/profile" ? "active" : ""}
         >
           Profile

@@ -38,7 +38,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path=":username" element={<ProfilePage/>} />
+        <Route path="/profile/:username" element={<ProfilePage/>} />
         <Route path="/create-post" element={<CreatePostPage/>} />
       </Routes>
       </BrowserRouter>

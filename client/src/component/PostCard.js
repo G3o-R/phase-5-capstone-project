@@ -64,7 +64,7 @@ function PostCard({ post }) {
     return (
       <>
       <PostCardContainer name="post-card">
-        <UserName name="users-name" onClick={()=>navigate(`/${username}`)}>{username}</UserName>
+        <UserName name="users-name" onClick={()=>navigate(`/profile/${username}`)}>{username}</UserName>
         <PostContainer name="post-container">
           <img src={image} alt={`${username}'s post`} name="post" />
         </PostContainer>
