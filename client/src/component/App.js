@@ -20,21 +20,20 @@ function App() {
 
 
   const { user, loading } = useSelector((state) => state.user)
-
   if (loading && !user) {
     return <div>Loading...</div>;
   } else if (!user){
+    console.log("switch to login")
     return(
     <BrowserRouter>
     <Routes>
-      {/* <Route path="/" element={<Navigate to="/login" />} /> */}
+      <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<Login />}/>
       <Route path= "/sign-up" element={<SignUp />} />
     </Routes>
     </BrowserRouter>
       )
   }
-  // console.log(user)
 
   return (
     <div className="App">
