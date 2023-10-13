@@ -20,7 +20,7 @@ export const EditPostDisplay = styled.div`
   }
 `;
 
-export const EditPostContainer = styled.div`
+export const EditPostContainer = styled.form`
   background-color: #fff;
   max-width: 500px;
   width: 100%;

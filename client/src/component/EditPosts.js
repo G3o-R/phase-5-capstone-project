@@ -5,18 +5,27 @@ import {
   Header,
   FormContainer,
 } from '../styles/EditPostStyles';
+import { useDispatch } from 'react-redux';
+import { editDescriptionOnPost } from '../redux/features/allPostsSlice';
 
 function EditPost({ onClose, postData }) {
   const [descriptionData, setDescription] = useState(postData.description);
+  const dispatch = useDispatch()
 
   function handleEdit(e) {
     e.preventDefault();
-    console.log('Done editing');
+    const descriptionToUpdateData = {
+        postId: postData.id,
+        descriptionData: descriptionData
+    }
+    dispatch(editDescriptionOnPost(descriptionToUpdateData))
+    onClose()
+    // console.log('Done editing');
   }
 
   return (
     <EditPostDisplay className="active">
-      <EditPostContainer>
+      <EditPostContainer onSubmit={(e) => handleEdit(e)}>
         <Header>
           <button onClick={onClose}>cancel</button>
           <h3>Edit Description</h3>
@@ -25,7 +34,6 @@ function EditPost({ onClose, postData }) {
           </button>
         </Header>
         <FormContainer>
-          <form onSubmit={(e) => handleEdit(e)}>
             <textarea
               type="text"
               name="description"
@@ -33,7 +41,6 @@ function EditPost({ onClose, postData }) {
               placeholder='description...'
               onChange={(e) => setDescription(e.target.value)}
             />
-          </form>
         </FormContainer>
       </EditPostContainer>
     </EditPostDisplay>

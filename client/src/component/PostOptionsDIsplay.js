@@ -10,7 +10,7 @@ import { deletePost } from "../redux/features/allPostsSlice"
 import { useState } from "react"
 import EditPost from "./EditPosts"
 
-function PostOptionsDisplay({postData, onClose, desc}){
+function PostOptionsDisplay({postData, onClose}){
     const [showEdit, setShowEdit] = useState(false)
     const dispatch = useDispatch()
     function handleDeleteComment(){
@@ -18,14 +18,10 @@ function PostOptionsDisplay({postData, onClose, desc}){
         onClose()
     }
 
-    function handleEdit(){
-        console.log("edit post")
-    }
-
     return (
       <>
       <PostOptionsDisplayContainer className="active">
-        <CloseOptionsPost onClick={onClose}>x</CloseOptionsPost>
+        <CloseOptionsPost onClick={onClose}>X</CloseOptionsPost>
         <PostOptionsContent>
           <PostOption onClick={handleDeleteComment} className="delete">Delete</PostOption>
           <PostOption onClick={()=>setShowEdit(true)} className="edit">Edit</PostOption>

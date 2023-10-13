@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import { updateUsersPostsLikes, removePostFromSingleUser } from "./allUsersSlice";
-import { json } from "react-router-dom";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
     try {
@@ -16,6 +15,7 @@ export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
     }
 })
 
+// likes a post
 export const likePost = createAsyncThunk("posts/likePost", async (id, thunkApi) =>{
     try{
         const response = await fetch(`/posts/${id}/like`, {
@@ -39,6 +39,7 @@ export const likePost = createAsyncThunk("posts/likePost", async (id, thunkApi) 
     }
 })
 
+// creates a post
 export const createPost = createAsyncThunk("posts/createPost", async (postData, thunkAPI) => {
     try{
         const response = await fetch('/posts',{
@@ -61,6 +62,7 @@ export const createPost = createAsyncThunk("posts/createPost", async (postData, 
     }
 })
 
+// deletes a post
 export const deletePost = createAsyncThunk("posts/deletePost", async (postId, thunkAPI) => {
     try{
         const response = await fetch(`/posts/${postId}`,{
@@ -75,6 +77,31 @@ export const deletePost = createAsyncThunk("posts/deletePost", async (postId, th
         return postId
     } catch {
         thunkAPI.rejectWithValue("an error occurred trying to delete the post")
+    }
+})
+
+// edits a post
+export const editDescriptionOnPost = createAsyncThunk("posts/editDescriptionOnPost", async (descriptionToUpdateData, thunkAPI) => {
+    const {postId, descriptionData} = descriptionToUpdateData
+    try {
+        const response = await fetch(`/posts/${postId}`,{
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({description: descriptionData})
+        })
+
+        if (!response.ok){
+            console.log("not okay")
+            const errorMessage = await response.json()
+            return thunkAPI.rejectWithValue(errorMessage)
+        }
+
+        return await response.json()
+    } catch{
+        console.log("catch")
+        return thunkAPI.rejectWithValue("An error occurred trying to update the description")
     }
 })
 
@@ -160,6 +187,28 @@ const allPostsSlice = createSlice(({
         })
         .addCase(deletePost.rejected, (state, action) => {
             state.error = action.payload;
+            state.loading = false;
+        })
+
+        // edits a post
+        .addCase(editDescriptionOnPost.pending,(state) => {
+            state.loading = true;
+            state.error = [];
+        })
+        .addCase(editDescriptionOnPost.fulfilled, (state,action) =>{
+            const newPost = action.payload
+            const updatedPostsArray = state.posts.map((post) =>{
+                if (post.id === newPost.id){
+                    return post = newPost
+                }
+                return post
+            })
+            state.posts = updatedPostsArray
+            state.error = [];
+            state.loading = false;
+        })
+        .addCase(editDescriptionOnPost.rejected, (state, action) => {
+            state.error = [];
             state.loading = false;
         })
         // handles comments on posts
