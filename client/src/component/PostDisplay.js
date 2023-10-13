@@ -12,6 +12,8 @@ import {
   PostSideBar,
   AddCommentTextPostDisplay,
   BottomSectionSideBar,
+  TopSectionSideBar,
+  DisplayOptionsButton
 } from "../styles/PostDisplayStyles.js";
 import {
   LikeAndCommentButtons,
@@ -23,6 +25,7 @@ import Comment from "./Comment";
 import { ReactComponent as LikeSVG } from "../images/Like.svg"
 import { ReactComponent as CommentSVG } from "../images/Comment.svg"
 import { ReactComponent as Unlike } from "../images/Unlike.svg"
+import { ReactComponent as ThreeDotsSVG } from "../images/ThreeDots.svg"
 import { useDispatch, useSelector } from "react-redux";
 import { likePost } from "../redux/features/allPostsSlice.js";
 
@@ -31,6 +34,7 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state.user)
   const [commentData, setComment] = useState({ comment: "" })
+  const [showOptions, setShowOptions] = useState(false)
   const {comment} = commentData
   
   console.log(post)
@@ -74,10 +78,13 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
           <PostImage src={image} alt={`${username}'s post`} />
         </ImageContainer>
         <PostSideBar>
+          <TopSectionSideBar>
           <UserInfo>
             <h3>{username}</h3>
             <h3>{description}</h3>
           </UserInfo>
+      { user.username === username? <DisplayOptionsButton><ThreeDotsSVG onClick={()=>setShowOptions(!showOptions)} /></DisplayOptionsButton> : null }
+          </TopSectionSideBar>
           <CommentsList>{commentsDisplay}</CommentsList>
           <BottomSectionSideBar>
             <LikeAndCommentButtons name="like-and-comment-btns">

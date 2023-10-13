@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     end
 
     def index 
-        # need to know how to alias comments so that comments made by user as seperate from comments that belong to user through posts
         render json: User.all, include: ['user_posts','user_posts.comments']
     end
 

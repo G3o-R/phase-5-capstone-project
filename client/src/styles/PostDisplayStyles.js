@@ -33,7 +33,7 @@ export const PostDisplayContent = styled.div`
   margin-left: 3rem;
   margin-right: 3rem;
   
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1400px) {
     height: 100%;
     max-height: calc(100% - 40px);
   }
@@ -115,6 +115,13 @@ export const BottomSectionSideBar = styled.section`
   margin-top:auto;
 `;
 
+export const TopSectionSideBar = styled.section`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+`;
+
 export const AddCommentTextPostDisplay = styled.form`
   display: flex;
   flex-direction: row;
@@ -149,3 +156,6 @@ export const AddCommentTextPostDisplay = styled.form`
   }
 `;
 
+export const DisplayOptionsButton = styled.div`
+padding-right: 20px;
+`;

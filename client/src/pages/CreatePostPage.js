@@ -26,10 +26,11 @@ function CreatePostPage() {
       e.preventDefault();
       dispatch(createPost(postData))
   
-      // setPostData({
-      //   image: "",
-      //   description: "",
-      // });
+      setPostData({
+        image: "",
+        description: "",
+      });
+      
     }
   
     function handleChange(e) {

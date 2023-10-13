@@ -23,7 +23,6 @@ function App() {
   if (loading && !user) {
     return <div>Loading...</div>;
   } else if (!user){
-    console.log("switch to login")
     return(
     <BrowserRouter>
     <Routes>
