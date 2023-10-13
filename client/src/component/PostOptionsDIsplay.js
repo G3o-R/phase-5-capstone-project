@@ -6,13 +6,14 @@ import {
 } from "../styles/PostOptionsDisplayStyles"
 
 import { useDispatch } from "react-redux"
+import { deletePost } from "../redux/features/allPostsSlice"
 
 function PostOptionsDisplay({postData, onClose}){
     const dispatch = useDispatch()
     function handleDeleteComment(){
         console.log("delete post")
-        // dispatch(deleteComment(commentData))
-        // onClose()
+        dispatch(deletePost(postData.id))
+        onClose()
     }
 
     function handleEdit(){

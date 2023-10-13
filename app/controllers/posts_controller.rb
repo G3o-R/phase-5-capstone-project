@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-    # skip_before_action :authorize
-
     def create
         post = @current_user.user_posts.create!(post_params)
         render json: post, status: :created

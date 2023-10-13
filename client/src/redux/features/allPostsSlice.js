@@ -40,9 +40,7 @@ export const likePost = createAsyncThunk("posts/likePost", async (id, thunkApi) 
 })
 
 export const createPost = createAsyncThunk("posts/createPost", async (postData, thunkAPI) => {
-    console.log(postData)
     try{
-        console.log("trying")
         const response = await fetch('/posts',{
             method: "POST",
             headers: {
@@ -59,10 +57,28 @@ export const createPost = createAsyncThunk("posts/createPost", async (postData, 
 
         return response.json()
     } catch{
-        console.log("error")
         return thunkAPI.rejectWithValue("An error occurred trying to create post")
     }
 })
+
+export const deletePost = createAsyncThunk("posts/deletePost", async (postId, thunkAPI) => {
+    try{
+        const response = await fetch(`/posts/${postId}`,{
+            method:"DELETE"
+        })
+
+        if(!response.ok){
+            const errorMessage = await response.json()
+            return thunkAPI.rejectWithValue(errorMessage)
+        }
+        // thunkAPI.dispatch(removePostFromSingleUser({postID}))
+        return postId
+    } catch {
+        thunkAPI.rejectWithValue("an error occurred trying to delete the post")
+    }
+})
+
+
 
 export const updatePostWithNewComment = createAction("posts/updatePostWithNewComment")
 export const removeCommentFromPost = createAction("posts/removeCommentFromPost")
@@ -89,7 +105,7 @@ const allPostsSlice = createSlice(({
             state.posts = action.payload;
             state.error = [];
         })
-        .addCase(getPosts.rejected, (state,action) => {
+        .addCase(getPosts.rejected, (state) => {
             state.loading = false;
             state.posts = null;
             state.error = [];
@@ -112,7 +128,7 @@ const allPostsSlice = createSlice(({
             state.error = [];
             state.loading = false
         })
-        .addCase(likePost.rejected, (state,action) => {
+        .addCase(likePost.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload;
         })
@@ -130,8 +146,24 @@ const allPostsSlice = createSlice(({
             state.error = action.payload;
             state.loading = false
         })
+        // deletes a post
+        .addCase(deletePost.pending,(state) => {
+            state.loading = true;
+            state.error = []
+        })
+        .addCase(deletePost.fulfilled, (state, action) => {
+            const deletedPostId = action.payload
+            const updatedPostsArray = state.posts.filter((post) => post.id !== deletedPostId)
+            state.posts = updatedPostsArray;
+            state.error = [];
+            state.loading = false;
+        })
+        .addCase(deletePost.rejected, (state, action) => {
+            state.error = action.payload;
+            state.loading = false;
+        })
         // handles comments on posts
-        .addCase(updatePostWithNewComment, (state,action) => {
+        .addCase(updatePostWithNewComment, (state, action) => {
             const {post_id, comment } = action.payload
             const updatedPosts = state.posts.map((post)=>{
                 if (post_id === post.id) {
@@ -141,7 +173,7 @@ const allPostsSlice = createSlice(({
             });
             state.posts = updatedPosts
         })
-        .addCase(removeCommentFromPost, (state,action) => {
+        .addCase(removeCommentFromPost, (state, action) => {
             const {post_id, commentID } = action.payload
             const updatedPosts = state.posts.map((post) => {
                 if (post_id === post.id) { 
