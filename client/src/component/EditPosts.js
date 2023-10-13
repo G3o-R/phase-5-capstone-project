@@ -1,5 +1,3 @@
-// EditPost.js
-
 import React, { useState } from 'react';
 import {
   EditPostDisplay,
@@ -21,7 +19,7 @@ function EditPost({ onClose, postData }) {
       <EditPostContainer>
         <Header>
           <button onClick={onClose}>cancel</button>
-          <h3>Edit info</h3>
+          <h3>Edit Description</h3>
           <button type="submit" name="done" onClick={handleEdit}>
             Done
           </button>
@@ -32,6 +30,7 @@ function EditPost({ onClose, postData }) {
               type="text"
               name="description"
               value={descriptionData}
+              placeholder='description...'
               onChange={(e) => setDescription(e.target.value)}
             />
           </form>
