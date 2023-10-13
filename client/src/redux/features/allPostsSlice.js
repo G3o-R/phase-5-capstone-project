@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
-import { updateUsersPostsLikes } from "./allUsersSlice";
+import { updateUsersPostsLikes, removePostFromSingleUser } from "./allUsersSlice";
 import { json } from "react-router-dom";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
@@ -71,7 +71,7 @@ export const deletePost = createAsyncThunk("posts/deletePost", async (postId, th
             const errorMessage = await response.json()
             return thunkAPI.rejectWithValue(errorMessage)
         }
-        // thunkAPI.dispatch(removePostFromSingleUser({postID}))
+        thunkAPI.dispatch(removePostFromSingleUser({postId}))
         return postId
     } catch {
         thunkAPI.rejectWithValue("an error occurred trying to delete the post")
