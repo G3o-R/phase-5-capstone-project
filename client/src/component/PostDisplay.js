@@ -22,6 +22,7 @@ import {
 } from "../styles/PostCardStyles.js"
 
 import Comment from "./Comment";
+import PostOptionsDisplay from "./PostOptionsDIsplay.js";
 import { ReactComponent as LikeSVG } from "../images/Like.svg"
 import { ReactComponent as CommentSVG } from "../images/Comment.svg"
 import { ReactComponent as Unlike } from "../images/Unlike.svg"
@@ -37,7 +38,6 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
   const [showOptions, setShowOptions] = useState(false)
   const {comment} = commentData
   
-  console.log(post)
   const { comments, description, image, username, users_liked, id } = post;
   
   const commentsDisplay = comments.map((comment) => (
@@ -67,8 +67,9 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
     }
 
   const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 
+  console.log(showOptions)
 
-  return (
+  return (<>
     <PostDisplayContainer
       className={`post-display ${showPostDisplay ? "active" : ""}`}
     >
@@ -110,6 +111,9 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
         </PostSideBar>
       </PostDisplayContent>
     </PostDisplayContainer>
+
+    {showOptions ? <PostOptionsDisplay postData={post} onClose={()=>setShowOptions(false)}/> : null}
+      </>
   );
 }
 
