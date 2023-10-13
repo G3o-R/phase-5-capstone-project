@@ -24,6 +24,7 @@ export const updateUsersPostsLikes = createAction("allUsers/updateUsersPostsLike
 export const removeCommentFromSingleUserPost = createAction("allUsers/removeCommentFromSingleUserPost")
 export const handleLikesForSingleUserComment = createAction("allUsers/handleLikesForSingleUserComment")
 export const removePostFromSingleUser = createAction("allUsers/removePostFromSingleUser")
+export const editPostFromSingleUser = createAction("allUsers/editPostFromSIngleUser")
 
 const allUsersSlice = createSlice(({
     name: "allUsers",
@@ -107,6 +108,19 @@ const allUsersSlice = createSlice(({
                 } else {return post}
             })
             state.singleUser.user_posts = updatedPosts
+        })
+        .addCase(editPostFromSingleUser,(state,action) => {
+            const {newPost} = action.payload;
+            if (state.singleUser){
+                const updatedPostsArray = state.singleUser.user_posts.map((post) => {
+                    if (post.id === newPost.id){
+                        return post = newPost
+                    }
+                    return post
+                })
+                state.singleUser.user_posts = updatedPostsArray
+            } 
+            state.errors = []
         })
         .addCase(handleLikesForSingleUserComment, (state, action) => {
             const {newComment} = action.payload

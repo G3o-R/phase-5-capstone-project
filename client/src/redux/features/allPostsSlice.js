@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
-import { updateUsersPostsLikes, removePostFromSingleUser } from "./allUsersSlice";
+import { updateUsersPostsLikes, removePostFromSingleUser, editPostFromSingleUser } from "./allUsersSlice";
 
 export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
     try {
@@ -93,14 +93,14 @@ export const editDescriptionOnPost = createAsyncThunk("posts/editDescriptionOnPo
         })
 
         if (!response.ok){
-            console.log("not okay")
             const errorMessage = await response.json()
             return thunkAPI.rejectWithValue(errorMessage)
         }
 
+        const newPost = await response.json()
+        thunkAPI.dispatch(editPostFromSingleUser({newPost}))
         return await response.json()
     } catch{
-        console.log("catch")
         return thunkAPI.rejectWithValue("An error occurred trying to update the description")
     }
 })
