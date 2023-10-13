@@ -67,7 +67,6 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
     }
 
   const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 
-  console.log(showOptions)
 
   return (<>
     <PostDisplayContainer
