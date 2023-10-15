@@ -5,15 +5,19 @@ import {
      Form,
      Label,
      Input,
-     SubmitButton
+     SubmitButton,
+     Error
      } from "../styles/CreatePostPageStyles";
 
 import PreviewPostCard from "../component/PreviewPostCard";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../redux/features/allPostsSlice";
 
 function CreatePostPage() {
     const dispatch = useDispatch()
+
+    const {errors} = useSelector((state) => state.allPosts)
+    console.log(errors)
 
     const [postData, setPostData] = useState({
       image: "",
@@ -63,6 +67,7 @@ function CreatePostPage() {
             />
             <SubmitButton type="submit">Create Post</SubmitButton>
           </Form>
+          {errors.map((error)=> <Error key={error}>{error}</Error>)}
         </FormContainer>
         {image.length > 0 || description.length > 0 ? <PreviewPostCard postData={postData} /> : null }
       </CreatePostContainer>

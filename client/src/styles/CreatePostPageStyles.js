@@ -43,3 +43,7 @@ export const SubmitButton = styled.button`
   margin-top: 10px;
   cursor: pointer;
 `;
+
+export const Error = styled.h4`
+  color: red;
+`;

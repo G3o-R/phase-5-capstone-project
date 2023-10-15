@@ -6,12 +6,12 @@ export const getPosts = createAsyncThunk("posts/getPosts", async (thunkAPI) => {
         const response = await fetch("/posts")
 
         if (!response.ok) {
-            return thunkAPI.rejectWithValue("An error occurred getting feed")
+            return thunkAPI.rejectWithValue("An errors occurred getting feed")
         }
 
         return response.json()
-    } catch (error) {
-        return thunkAPI.rejectWithValue("An error occurred getting posts")
+    } catch (errors) {
+        return thunkAPI.rejectWithValue("An errors occurred getting posts")
     }
 })
 
@@ -27,7 +27,7 @@ export const likePost = createAsyncThunk("posts/likePost", async (id, thunkApi) 
 
         if (!response.ok){
             const errorMessage = await response.json()
-            return thunkApi.rejectWithValue(errorMessage)
+            return thunkApi.rejectWithValue(errorMessage.errors)
         }
 
         const likedPost = await response.json()
@@ -53,12 +53,12 @@ export const createPost = createAsyncThunk("posts/createPost", async (postData, 
         if (!response.ok){
             console.log("not okay")
             const errorMessage = await response.json()
-            return thunkAPI.rejectWithValue(errorMessage)
+            return thunkAPI.rejectWithValue(errorMessage.errors)
         }
 
         return response.json()
     } catch{
-        return thunkAPI.rejectWithValue("An error occurred trying to create post")
+        return thunkAPI.rejectWithValue("An errors occurred trying to create post")
     }
 })
 
@@ -71,12 +71,12 @@ export const deletePost = createAsyncThunk("posts/deletePost", async (postId, th
 
         if(!response.ok){
             const errorMessage = await response.json()
-            return thunkAPI.rejectWithValue(errorMessage)
+            return thunkAPI.rejectWithValue(errorMessage.errors)
         }
         thunkAPI.dispatch(removePostFromSingleUser({postId}))
         return postId
     } catch {
-        thunkAPI.rejectWithValue("an error occurred trying to delete the post")
+        thunkAPI.rejectWithValue("an errors occurred trying to delete the post")
     }
 })
 
@@ -94,7 +94,7 @@ export const editDescriptionOnPost = createAsyncThunk("posts/editDescriptionOnPo
 
         if (!response.ok){
             const errorMessage = await response.json()
-            return thunkAPI.rejectWithValue(errorMessage)
+            return thunkAPI.rejectWithValue(errorMessage.errors)
         }
 
         const newPost = await response.json()
@@ -116,7 +116,7 @@ const allPostsSlice = createSlice(({
     initialState: {
         posts: [],
         loading: false,
-        error: []
+        errors: []
     },
     reducers: {
 
@@ -130,17 +130,17 @@ const allPostsSlice = createSlice(({
         .addCase(getPosts.fulfilled, (state, action) => {
             state.loading = false;
             state.posts = action.payload;
-            state.error = [];
+            state.errors = [];
         })
         .addCase(getPosts.rejected, (state) => {
             state.loading = false;
             state.posts = null;
-            state.error = [];
+            state.errors = [];
         })
         // likes a post
         .addCase(likePost.pending, (state) => {
             state.loading = true;
-            state.error = false;
+            state.errors = false;
         })
         .addCase(likePost.fulfilled, (state, action) => {
             const {id} = action.payload
@@ -152,48 +152,48 @@ const allPostsSlice = createSlice(({
                 else { return post}
             })
             state.posts = updatedPostsArray;
-            state.error = [];
+            state.errors = [];
             state.loading = false
         })
         .addCase(likePost.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload;
+            state.errors = action.payload;
         })
         // posts a post lol
         .addCase(createPost.pending, (state) => {
             state.loading = true;
-            state.error = [];
+            state.errors = [];
         })
         .addCase(createPost.fulfilled, (state, action) => {
             state.posts = [action.payload,...state.posts];
-            state.error = [];
+            state.errors = [];
             state.loading = false;
         })
         .addCase(createPost.rejected, (state,action) => {
-            state.error = action.payload;
+            state.errors = action.payload;
             state.loading = false
         })
         // deletes a post
         .addCase(deletePost.pending,(state) => {
             state.loading = true;
-            state.error = []
+            state.errors = []
         })
         .addCase(deletePost.fulfilled, (state, action) => {
             const deletedPostId = action.payload
             const updatedPostsArray = state.posts.filter((post) => post.id !== deletedPostId)
             state.posts = updatedPostsArray;
-            state.error = [];
+            state.errors = [];
             state.loading = false;
         })
         .addCase(deletePost.rejected, (state, action) => {
-            state.error = action.payload;
+            state.errors = action.payload;
             state.loading = false;
         })
 
         // edits a post
         .addCase(editDescriptionOnPost.pending,(state) => {
             state.loading = true;
-            state.error = [];
+            state.errors = [];
         })
         .addCase(editDescriptionOnPost.fulfilled, (state,action) =>{
             const newPost = action.payload
@@ -204,11 +204,11 @@ const allPostsSlice = createSlice(({
                 return post
             })
             state.posts = updatedPostsArray
-            state.error = [];
+            state.errors = [];
             state.loading = false;
         })
         .addCase(editDescriptionOnPost.rejected, (state, action) => {
-            state.error = [];
+            state.errors = [];
             state.loading = false;
         })
         // handles comments on posts
@@ -255,7 +255,7 @@ const allPostsSlice = createSlice(({
             });
           
             state.posts = updatedPosts;
-            state.error = [];
+            state.errors = [];
           })
     }
 }))
