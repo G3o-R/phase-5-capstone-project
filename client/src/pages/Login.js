@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   LoginPage,
   ContainerWrapper,
@@ -13,13 +13,15 @@ import {
   SubmitButton,
   SignUpContainer,
   SignUpLink,
+  Error
 } from "../styles/LoginStyles";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/features/userSlice";
 
 
 function Login() {
+  const {errors} = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
@@ -81,12 +83,14 @@ function Login() {
               name="password"
               value={password}
               placeholder="Password..."
+              autoComplete="false"
               onChange={handleChange}
             />
             {showButton}
           </FormGroup>
           <SubmitButton type="submit">Log in</SubmitButton>
         </LoginForm>
+        {errors.map((error)=><Error key={error}>{error}</Error>)}
       </FormContainer>
       <SignUpContainer>
         <span>

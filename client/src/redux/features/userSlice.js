@@ -17,8 +17,8 @@ export const loginUser = createAsyncThunk("user/loginUser", async (loginData, th
         }
 
         return response.json()
-    } catch (error){
-        return thunkAPI.rejectWithValue("An error occurred while logging in.")
+    } catch (errors){
+        return thunkAPI.rejectWithValue("An errors occurred while logging in.")
     }
 });
 
@@ -45,8 +45,8 @@ export const signUpUser = createAsyncThunk("user/signUpUser", async (signUpData,
             return thunkAPI.rejectWithValue(errorMessage.errors)
         }
         return response.json()
-    } catch (error){
-        return thunkAPI.rejectWithValue("An error occurred while logging in.")
+    } catch (errors){
+        return thunkAPI.rejectWithValue("An errors occurred while logging in.")
     }
 })
 
@@ -60,7 +60,7 @@ export const getMe = createAsyncThunk("user/getMe", async (thunkAPI)=>{
         }
 
         return response.json()
-    } catch (error){
+    } catch (errors){
         return thunkAPI.rejectWithValue("An ocurred with the session")
     }
 });
@@ -70,7 +70,7 @@ const userSlice = createSlice({
     initialState: {
         user: null,
         loading: true,
-        error: []
+        errors: []
     },
     reducers: {
         // I'll add to this later
@@ -80,22 +80,22 @@ const userSlice = createSlice({
         // login a user
         .addCase(loginUser.pending, (state) => {
             state.loading = true;
-            state.error = [];
+            state.errors = [];
         })
         .addCase(loginUser.fulfilled, (state, action) => {
             state.loading = false;
             state.user = action.payload;
-            state.error = [];
+            state.errors = [];
         })
         .addCase(loginUser.rejected, (state, action) => {
             state.loading = false;
             state.user = null;
-            state.error = action.payload
+            state.errors = action.payload
         })
         // logout the user
         .addCase(logOutUser.pending, (state) => {
             state.loading = true;
-            state.error = [];
+            state.errors = [];
         })
         .addCase(logOutUser.fulfilled, (state) => {
             state.loading = false;
@@ -104,32 +104,30 @@ const userSlice = createSlice({
         // get me the user
         .addCase(getMe.pending, (state) => {
             state.loading = true;
-            state.error = [];
+            state.errors = [];
         })
         .addCase(getMe.fulfilled, (state, action) => {
             state.loading = false;
             state.user = action.payload
         })
-        .addCase(getMe.rejected, (state, action) => {
+        .addCase(getMe.rejected, (state) => {
             state.loading = false;
-            state.user = null
-            state.error = action.payload
+            state.user = null;
         })
         // sign up user
         .addCase(signUpUser.pending, (state, action)=> {
             state.loading = true;
-            state.error = [];
+            state.errors = [];
         })
         .addCase(signUpUser.fulfilled, (state, action) => {
             state.loading = false;
-            console.log(action.payload)
             state.user = action.payload;
-            state.error = []
+            state.errors = []
         })
         .addCase(signUpUser.rejected, (state, action) => {
             state.loading = false;
             state.user = null;
-            state.error = action.payload;
+            state.errors = action.payload;
         })
     }
 })

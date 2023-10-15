@@ -20,6 +20,7 @@ export const FormContainer = styled.div`
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
+  align-items:center;
   flex-grow: 1;
   padding: 20px;
   border: 1px solid #dbdbdb;
@@ -33,11 +34,12 @@ export const LoginForm = styled.form`
   max-width: 300px;
   margin: 0 auto;
 `;
-// I want the input to not have a border even when focused on and I want the
-// the width of the form group to stay the same width no matter if the ShowButton is being displayed or not
-// do this by either decreasing the width of the input field when ShowButton is being displayed,
-// giving the buttonContainer a set width to account for the width of the inner text
-// or however you see fit  
+
+export const Error = styled.h4`
+  color: red;
+  justify-self:center;
+`;
+
 export const Title = styled.h2`
   text-align: center;
 `;
