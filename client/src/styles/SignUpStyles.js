@@ -23,6 +23,7 @@ export const SignUpContainer = styled.div`
   padding: 20px;
   border-radius: 4px;
   border: 1px solid #dbdbdb;
+  align-items:center;
 `;
 
 export const LoginContainer = styled.div`
@@ -83,4 +84,8 @@ export const LoginLink = styled(Link)`
   color: #007bff;
   text-decoration: none;
   margin-top: 0;
+`;
+export const Error = styled.h4`
+  color: red;
+  margin:10px;
 `;

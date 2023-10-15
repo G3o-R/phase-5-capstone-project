@@ -9,7 +9,8 @@ import {
   InputField,
   SignUpButton,
   LoginLink,
-  LoginContainer, // Import LoginContainer
+  LoginContainer,
+  Error
 } from "../styles/SignUpStyles.js";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -18,7 +19,7 @@ import { signUpUser } from "../redux/features/userSlice.js";
 function SignUp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {user, loading, error } = useSelector((state)=>state.user)
+  const { errors } = useSelector((state)=>state.user)
 
   const [signupData, setSignupData] = useState({
     username: "",
@@ -76,6 +77,7 @@ function SignUp() {
             />
             <SignUpButton type="submit">Sign Up</SignUpButton>
           </Form>
+          {errors.map((error)=> <Error>{error}</Error>)}
         </SignUpContainer>
 
         <LoginContainer>
