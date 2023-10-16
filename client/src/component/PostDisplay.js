@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { addComment } from "../redux/features/commentsSlice.js";
+import React, { useState, useRef, useEffect } from "react";
+import { addComment, clearErrors } from "../redux/features/commentsSlice.js";
 
 import {
   PostDisplayContainer,
@@ -29,6 +29,7 @@ import { ReactComponent as Unlike } from "../images/Unlike.svg"
 import { ReactComponent as ThreeDotsSVG } from "../images/ThreeDots.svg"
 import { useDispatch, useSelector } from "react-redux";
 import { likePost } from "../redux/features/allPostsSlice.js";
+import DisplayErrors from "./DisplayErrors.js";
 
 function PostDisplay({ post, onClose, showPostDisplay }) {
   const textareaRef = useRef(null);
@@ -37,6 +38,15 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
   const [commentData, setComment] = useState({ comment: "" })
   const [showOptions, setShowOptions] = useState(false)
   const {comment} = commentData
+  const { errors } = useSelector((state) => state.comments)
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(clearErrors());
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, [errors, dispatch]);
   
   const { comments, description, image, username, users_liked, id } = post;
   
@@ -110,6 +120,7 @@ function PostDisplay({ post, onClose, showPostDisplay }) {
         </PostSideBar>
       </PostDisplayContent>
     </PostDisplayContainer>
+    {errors.length > 0 ? <DisplayErrors errors={errors}/> : null}
 
     {showOptions ? <PostOptionsDisplay postData={post} onClose={()=>setShowOptions(false)}/> : null}
       </>

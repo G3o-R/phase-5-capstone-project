@@ -9,6 +9,6 @@ class User < ApplicationRecord
   
     validates :email, presence: true, uniqueness: { message: "An account with this email already exists" }, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/ }
     validates :username, presence: true, uniqueness: true
-    validates :password, length: { minimum: 8, message: "must be at least 8 characters long" }
+    validates :password_digest, length: { minimum: 8, message: "must be at least 8 characters long" }
   end
   
