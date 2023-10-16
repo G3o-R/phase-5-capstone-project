@@ -56,13 +56,24 @@ export const Form = styled.form`
   margin: 0 auto;
 `;
 
+export const FormGroup = styled.div`
+  margin-bottom: 15px;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  background-color: #f7f7f7;
+`;
+
 export const InputField = styled.input`
   width: 100%;
   padding: 10px;
   margin-top: 5px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 4px;
   background-color: #f7f7f7;
+  &:focus{
+    outline:none;
+  }
 `;
 
 export const SignUpButton = styled.button`
@@ -88,4 +99,20 @@ export const LoginLink = styled(Link)`
 export const Error = styled.h4`
   color: red;
   margin:10px;
+`;
+
+export const ButtonContainer = styled.div`
+  width:40px;
+  margin-right:15px;
+
+`;
+
+export const ShowButton = styled.button`
+  border:none;
+  background:transparent;
+  padding-right:10px;
+  cursor: pointer;
+  &:hover{
+    opacity:.5;
+  }
 `;
