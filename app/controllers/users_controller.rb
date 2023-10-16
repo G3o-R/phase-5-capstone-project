@@ -20,11 +20,6 @@ class UsersController < ApplicationController
         render json: user, include: ['user_posts','user_posts.comments']
     end
 
-    def update
-        updated_username = @current_user.update!(params.permit(:username))
-        render json: updated_username
-    end
-
     private 
 
     def user_params
