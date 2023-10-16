@@ -85,7 +85,6 @@ const allUsersSlice = createSlice(({
         .addCase(updateUsersPostsComments, (state, action) => {
             const { post_id, newComment } = action.payload;
         if (state.singleUser){
-
             const updatedUserPosts = state.singleUser.user_posts.map((post) => {
                 if (post.id === post_id) {
                     return {
@@ -101,13 +100,15 @@ const allUsersSlice = createSlice(({
         })
         .addCase(removeCommentFromSingleUserPost, (state,action) =>{
             const {post_id, commentID} = action.payload
-            const updatedPosts = state.singleUser.user_posts.map((post) => {
-                if (post.id === post_id){
-                    const updatedCommentsArray = post.comments.filter((comment) => comment.id !== commentID)
-                    return {...post, comments: updatedCommentsArray}
-                } else {return post}
-            })
-            state.singleUser.user_posts = updatedPosts
+            if(state.singleUser){
+                const updatedPosts = state.singleUser.user_posts.map((post) => {
+                    if (post.id === post_id){
+                        const updatedCommentsArray = post.comments.filter((comment) => comment.id !== commentID)
+                        return {...post, comments: updatedCommentsArray}
+                    } else {return post}
+                })
+                state.singleUser.user_posts = updatedPosts
+            }
         })
         .addCase(editPostFromSingleUser,(state,action) => {
             const {newPost} = action.payload;
@@ -124,22 +125,25 @@ const allUsersSlice = createSlice(({
         })
         .addCase(handleLikesForSingleUserComment, (state, action) => {
             const {newComment} = action.payload
-            const updatedPost = state.singleUser.user_posts.map((post) => {
-                if(newComment.post_id === post.id){
-                    const updatedPost = {
-                        ...post,
-                        comments: post.comments.map((comment) =>{
-                            if (comment.id === newComment.id){
-                                return newComment
-                            }
-                            return comment
-                        })
+            if (state.singleUser){
+
+                const updatedPost = state.singleUser.user_posts.map((post) => {
+                    if(newComment.post_id === post.id){
+                        const updatedPost = {
+                            ...post,
+                            comments: post.comments.map((comment) =>{
+                                if (comment.id === newComment.id){
+                                    return newComment
+                                }
+                                return comment
+                            })
+                        }
+                        return updatedPost
                     }
-                    return updatedPost
-                }
-                return post
-            })
-            state.singleUser.user_posts = updatedPost
+                    return post
+                })
+                state.singleUser.user_posts = updatedPost
+            }
         })
         
         

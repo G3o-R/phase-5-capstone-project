@@ -22,6 +22,7 @@ export const addComment = createAsyncThunk("comment/addComment", async (commentD
         const newComment = await response.json()
         thunkAPI.dispatch(updateUsersPostsComments({post_id, newComment}))
         thunkAPI.dispatch(updatePostWithNewComment({ post_id, comment: newComment}));
+        // debugger
         return newComment
     } catch (error){
         return thunkAPI.rejectWithValue("An error occurred trying to make a comment")
@@ -42,8 +43,8 @@ export const deleteComment = createAsyncThunk("comment/deleteComment", async (co
         const post_id = commentData.post_id
         const commentID = commentData.id
 
-        thunkAPI.dispatch(removeCommentFromPost({post_id, commentID}))
         thunkAPI.dispatch(removeCommentFromSingleUserPost({post_id, commentID}))
+        thunkAPI.dispatch(removeCommentFromPost({post_id, commentID}))
     } catch(error) {
         return thunkAPI.rejectWithValue(["An error occurred trying to delete the comment"])
     }
