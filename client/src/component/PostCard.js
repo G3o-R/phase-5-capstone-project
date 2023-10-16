@@ -59,8 +59,6 @@ function PostCard({ post }) {
 
     const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 
 
-
-
     return (
       <>
       <PostCardContainer name="post-card">

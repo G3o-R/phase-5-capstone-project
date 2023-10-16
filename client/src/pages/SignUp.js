@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   ContainerWrapper,
   SignUpPage,
@@ -17,7 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { signUpUser } from "../redux/features/userSlice.js";
 
 function SignUp() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { errors } = useSelector((state)=>state.user)
 

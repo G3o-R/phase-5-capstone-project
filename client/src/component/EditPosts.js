@@ -20,7 +20,6 @@ function EditPost({ onClose, postData }) {
     }
     dispatch(editDescriptionOnPost(descriptionToUpdateData))
     onClose()
-    // console.log('Done editing');
   }
 
   return (

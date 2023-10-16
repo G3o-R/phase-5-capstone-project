@@ -17,7 +17,6 @@ function CreatePostPage() {
     const dispatch = useDispatch()
 
     const {errors} = useSelector((state) => state.allPosts)
-    console.log(errors)
 
     const [postData, setPostData] = useState({
       image: "",

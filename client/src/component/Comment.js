@@ -28,7 +28,6 @@ function Comment({commentData}){
     function handleLikeComment(){
       dispatch(likeComment(commentData))
     }
-    // debugger
     const likeOrUnLike = users_liked.includes(user.username) ? <Unlike /> : <LikeSVG /> 
 
 

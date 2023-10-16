@@ -13,7 +13,6 @@ import {
 } from "../styles/NavBarStyles";
 
 import {ReactComponent as HomeSVG} from "../images/Home.svg"
-import {ReactComponent as SearchSVG} from "../images/Search.svg"
 import {ReactComponent as Create} from "../images/Create.svg"
 import {ReactComponent as More} from "../images/Settings.svg"
 
@@ -40,11 +39,6 @@ function NavBar() {
         >
           <HomeSVG/> Home
         </NavLink>
-        {/* <NavLink
-          className={location.pathname === "/search" ? "active" : ""}
-        >
-          <SearchSVG/> Search
-        </NavLink> */}
         <NavLink
           to="/create-post"
           className={location.pathname === "/create-post" ? "active" : ""}

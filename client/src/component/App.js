@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getMe());
-  }, []);
+  }, [dispatch]);
 
 
   const { user, loading } = useSelector((state) => state.user)
