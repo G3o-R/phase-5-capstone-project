@@ -1,11 +1,5 @@
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 
-export const getAllUsers = createAsyncThunk("allUsers/getAllUsers", async ()=>{
-    return fetch("/users").then((res) => 
-        res.json()
-    );
-})
-
 export const getUser = createAsyncThunk("allUsers/getUser", async (username, thunkAPI) => {
     try {
         const response = await fetch(`/users/${username}`)
@@ -36,21 +30,6 @@ const allUsersSlice = createSlice(({
     },
     extraReducers: (builder) => {
         builder
-        // gets all users
-        .addCase(getAllUsers.pending, (state) => {
-            state.loading = true;
-            state.errors = []
-        })
-        .addCase(getAllUsers.fulfilled, (state, action) => {
-            state.loading = false;
-            state.allUsers = action.payload;
-            state.errors = [];
-        })
-        .addCase(getAllUsers.rejected, (state, action) => {
-            state.loading = false;
-            state.allUsers = [];
-            state.errors = action.payload;
-        })
         // get single user
         .addCase(getUser.pending, (state) => {
             state.loading = true;
