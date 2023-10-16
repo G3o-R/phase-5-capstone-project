@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   ProfilePageContainer,
   PostRow,
@@ -9,15 +9,11 @@ import {
   ImageContainer,
   ProfileHeader,
   ProfileInfo,
-  EditProfileButton,
+  AddPostButton,
   SmallText,
   InlineFlex,
-  BioText,
-  BioSection,
 } from "../styles/ProfilePageStyles";
 
-import ProfileIcon from "../component/ProfileIcon";
-import ProfileImage from "../images/ProfileImage.jpg";
 import PostDisplay from "../component/PostDisplay";
 import { getUser } from "../redux/features/allUsersSlice";
 
@@ -25,23 +21,22 @@ function ProfilePage() {
   const [showPostDisplay, setShowPostDisplay] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const { username } = useParams();
   useEffect(() => {
     dispatch(getUser(username));
-    console.log("getting user")
   }, [dispatch, username]);
   const { singleUser, loading } = useSelector((state) => state.allUsers);
-
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (selectedPost) {
-        const updatedPost = singleUser.user_posts.find((post) => post.id === selectedPost.id);
-        setSelectedPost(updatedPost);
+      const updatedPost = singleUser.user_posts.find((post) => post.id === selectedPost.id);
+      setSelectedPost(updatedPost);
     }
-}, [singleUser, selectedPost]);
+  }, [singleUser, selectedPost]);
 
-  
   if (loading || singleUser === null) {
     return <h1>Loading...</h1>;
   }
@@ -81,21 +76,18 @@ function ProfilePage() {
     <>
       <ProfilePageContainer>
         <ProfileHeader>
-          <ProfileIcon size={"big"} profilePicture={ProfileImage} />
           <ProfileInfo>
             <InlineFlex className="buttons-sections">
               <h1>{singleUser.username}</h1>
-              <EditProfileButton>Edit profile</EditProfileButton>
+              <SmallText>{singleUser.user_posts.length} posts</SmallText>
             </InlineFlex>
-            <InlineFlex className="user-info-section">
-              <SmallText>## posts</SmallText>
-              <SmallText>## followers</SmallText>
-              <SmallText>## following</SmallText>
+            <InlineFlex>
+              {user.username === username ? (
+                <AddPostButton onClick={()=>navigate("/create-post")}>
+                  Add Post
+                </AddPostButton>
+              ) : null}
             </InlineFlex>
-            <BioSection>
-              <SmallText>{singleUser.username}</SmallText>
-              <BioText>{singleUser.biography}</BioText>
-            </BioSection>
           </ProfileInfo>
         </ProfileHeader>
         <PostsContainer>{renderedRows}</PostsContainer>
@@ -104,7 +96,7 @@ function ProfilePage() {
         <PostDisplay
           onClose={() => setShowPostDisplay(false)}
           showPostDisplay={showPostDisplay}
-          post={selectedPost} // Pass the selected post to PostDisplay
+          post={selectedPost}
         />
       ) : null}
     </>

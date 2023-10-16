@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const ProfilePageContainer = styled.div`
   display: flex;
@@ -55,6 +54,8 @@ export const ProfileHeader = styled.div`
   gap: 20px;
   padding-top: 50px;
   padding-bottom: 70px;
+  border-bottom: 1px solid black;
+  width:50VW;
 `;
 
 export const ProfileInfo = styled.section`
@@ -63,7 +64,7 @@ export const ProfileInfo = styled.section`
   align-items: flex-start;
 `;
 
-export const EditProfileButton = styled.button`
+export const AddPostButton = styled.button`
   background-color: transparent;
   border: 1px solid #007fff;
   color: #007fff;
@@ -71,35 +72,23 @@ export const EditProfileButton = styled.button`
   font-size: 16px;
   padding: 8px 16px;
   border-radius: 4px;
+  width: 120px;
 `;
 
-// Additional Styles
 export const SmallText = styled.h2`
   font-weight: 150;
-  font-size: 16px;
+  font-size: 30px;
   margin: 0;
+  margin-top:auto;
 `;
 
 export const InlineFlex = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
-`;
-
-export const BioText = styled.h1`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-`;
-
-export const BioSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  h1 {
-    font-size: 16px;
-    margin: 0;
+  gap: 3rem;
+  h1{
+    margin:0;
+    padding:0;
+    font-size: 50px;
   }
 `;

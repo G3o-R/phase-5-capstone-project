@@ -19,7 +19,6 @@ export const getUser = createAsyncThunk("allUsers/getUser", async (username, thu
         return thunkAPI.rejectWithValue("couldn't get user")
     }
 });
-
 export const updateUsersPostsComments = createAction("allUsers/updateUsersPostComments")
 export const updateUsersPostsLikes = createAction("allUsers/updateUsersPostsLikes")
 export const removeCommentFromSingleUserPost = createAction("allUsers/removeCommentFromSingleUserPost")
