@@ -22,7 +22,6 @@ export const addComment = createAsyncThunk("comment/addComment", async (commentD
         const newComment = await response.json()
         thunkAPI.dispatch(updateUsersPostsComments({post_id, newComment}))
         thunkAPI.dispatch(updatePostWithNewComment({ post_id, comment: newComment}));
-        // debugger
         return newComment
     } catch (error){
         return thunkAPI.rejectWithValue("An error occurred trying to make a comment")
@@ -92,16 +91,9 @@ const commentsSlice = createSlice(({
             state.loading = true;
             state.errors = [];
         })
-        .addCase(addComment.fulfilled, (state, action) => {
-            state.loading = false;
-            state.errors = []
-            state.comments = action.payload
-        })
         .addCase(addComment.rejected, (state, action) => {
             state.loading = false;
             state.user = null;
-            // debugger
-            console.log("rejected")
             state.errors = action.payload;
         })
 
