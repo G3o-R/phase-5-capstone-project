@@ -12,7 +12,7 @@ To get started, follow these steps to install the necessary dependencies:
    - In the project's root directory, navigate to the "client" directory.
    - Run `npm install --prefix client` to install JavaScript dependencies.
 
-3. or instead you could got to this [link](https://phase-5-capstone-project.onrender.com) to see the project
+3. or instead you could go to this [link](https://phase-5-capstone-project.onrender.com) to see the project
 
 ## General Information
 
