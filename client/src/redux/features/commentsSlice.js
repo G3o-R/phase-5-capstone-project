@@ -12,8 +12,6 @@ export const addComment = createAsyncThunk("comment/addComment", async (commentD
             body: JSON.stringify(commentData)
         })
         if (!response.ok) {
-            console.log("not okay")
-
             const errorMessage = await response.json()
             return thunkAPI.rejectWithValue(errorMessage.errors)
         }
