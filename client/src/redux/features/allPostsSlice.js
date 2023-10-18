@@ -99,7 +99,7 @@ export const editDescriptionOnPost = createAsyncThunk("posts/editDescriptionOnPo
 
         const newPost = await response.json()
         thunkAPI.dispatch(editPostFromSingleUser({newPost}))
-        return await response.json()
+        return await newPost
     } catch{
         return thunkAPI.rejectWithValue("An error occurred trying to update the description")
     }
@@ -197,6 +197,7 @@ const allPostsSlice = createSlice(({
         })
         .addCase(editDescriptionOnPost.fulfilled, (state,action) =>{
             const newPost = action.payload
+
             const updatedPostsArray = state.posts.map((post) =>{
                 if (post.id === newPost.id){
                     return post = newPost

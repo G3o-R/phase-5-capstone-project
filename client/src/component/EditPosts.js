@@ -28,7 +28,7 @@ function EditPost({ onClose, postData }) {
         <Header>
           <button onClick={onClose}>cancel</button>
           <h3>Edit Description</h3>
-          <button type="submit" name="done" onClick={handleEdit}>
+          <button type="submit" name="done">
             Done
           </button>
         </Header>
