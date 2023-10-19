@@ -12,9 +12,11 @@ import {
 import PreviewPostCard from "../component/PreviewPostCard";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../redux/features/allPostsSlice";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function CreatePostPage() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const {errors} = useSelector((state) => state.allPosts)
 
@@ -28,13 +30,24 @@ function CreatePostPage() {
     function createPostSubmit(e) {
       e.preventDefault();
       dispatch(createPost(postData))
-  
+        .then((result) => {
+          if (createPost.fulfilled.match(result)) {
+            navigate("/");
+          } else {
+            console.error("Post creation failed");
+          }
+        })
+        .catch((error) => {
+          console.error("Dispatch error:", error);
+        });
+    
       setPostData({
         image: "",
         description: "",
       });
-      
     }
+    
+    
   
     function handleChange(e) {
       let name = e.target.name;

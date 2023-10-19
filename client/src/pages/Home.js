@@ -13,7 +13,6 @@ import DisplayErrors from "../component/DisplayErrors"
 function Home(){
     const {posts} = useSelector((state) => state.allPosts)
     const {errors} = useSelector((state) => state.comments)
-    console.log("test")
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getPosts())
