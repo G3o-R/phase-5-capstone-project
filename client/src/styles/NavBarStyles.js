@@ -59,6 +59,11 @@ export const MoreContainer = styled.div`
   gap: 5px;
   align-items: center;
   cursor: pointer;
+
+  .inactive{
+    display:none;
+  }
+
   `;
 
 export const MoreTab = styled.div`
