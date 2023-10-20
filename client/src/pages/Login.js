@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   LoginPage,
@@ -17,14 +17,13 @@ import {
 } from "../styles/LoginStyles";
 
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../redux/features/userSlice";
-
+import { loginUser, clearErrors } from "../redux/features/userSlice";
 
 function Login() {
-  const {errors} = useSelector((state) => state.user)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [showPassword, setShowPassword] = useState(false)
+  const { errors } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -40,64 +39,70 @@ function Login() {
 
   function handleLoginSubmit(e) {
     e.preventDefault();
-    dispatch(loginUser(loginData))
+    dispatch(loginUser(loginData));
     setLoginData({
       username: "",
       password: "",
     });
-    navigate("/")
+    navigate("/");
+  }
+
+  function navigateToSignUp(e) {
+    navigate("/sign-up")
+    dispatch(clearErrors())
   }
 
   const showButton = (
     <ButtonContainer>
-      {password.length > 0 ? 
-      <ShowButton type="button" onClick={() => setShowPassword(!showPassword)}>
-        {showPassword ? "Hide" : "Show"}
-      </ShowButton> :
-      null
-      }
+      {password.length > 0 ? (
+        <ShowButton type="button" onClick={() => setShowPassword(!showPassword)}>
+          {showPassword ? "Hide" : "Show"}
+        </ShowButton>
+      ) : null}
     </ButtonContainer>
   );
-  
 
   return (
     <LoginPage>
-    <ContainerWrapper>
-      <FormContainer>
-        <LoginForm onSubmit={handleLoginSubmit}>
-          <Title>CodeGram</Title>
-          <FormGroup>
-            <Input
-              type="text"
-              id="username"
-              name="username"
-              value={username}
-              placeholder="Username..."
-              onChange={handleChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Input
-              type={showPassword ? "text" : "password"}
-              id="password"
-              name="password"
-              value={password}
-              placeholder="Password..."
-              autoComplete="false"
-              onChange={handleChange}
-            />
-            {showButton}
-          </FormGroup>
-          <SubmitButton type="submit">Log in</SubmitButton>
-        </LoginForm>
-        {errors.map((error)=><Error key={error}>{error}</Error>)}
-      </FormContainer>
-      <SignUpContainer>
-        <span>
-          Don't have an account? <SignUpLink to="/sign-up">Sign up</SignUpLink>
-        </span>
-      </SignUpContainer>
-        </ContainerWrapper>
+      <ContainerWrapper>
+        <FormContainer>
+          <LoginForm onSubmit={handleLoginSubmit}>
+            <Title>CodeGram</Title>
+            <FormGroup>
+              <Input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                placeholder="Username..."
+                onChange={handleChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={password}
+                placeholder="Password..."
+                autoComplete="false"
+                onChange={handleChange}
+              />
+              {showButton}
+            </FormGroup>
+            <SubmitButton type="submit">Log in</SubmitButton>
+          </LoginForm>
+          {errors.map((error) => (
+            <Error key={error}>{error}</Error>
+          ))}
+        </FormContainer>
+        <SignUpContainer>
+          <span>
+            Don't have an account?
+            <SignUpLink onClick={(e)=>navigateToSignUp(e)}>Sign up</SignUpLink>
+          </span>
+        </SignUpContainer>
+      </ContainerWrapper>
     </LoginPage>
   );
 }

@@ -40,6 +40,12 @@ export const LoginContainer = styled.div`
   margin: 10px auto;
   padding-top: 1px;
   padding-bottom: 1px;
+
+  span{
+    display:flex;
+    flex-direction: row;
+    gap:5px;
+  }
 `;
 
 export const Title = styled.h1`
@@ -91,10 +97,11 @@ export const SignUpButton = styled.button`
   }
 `;
 
-export const LoginLink = styled(Link)`
+export const LoginLink = styled.p`
   color: #007bff;
   text-decoration: none;
   margin-top: 0;
+  cursor: pointer;
 `;
 export const Error = styled.h4`
   color: red;

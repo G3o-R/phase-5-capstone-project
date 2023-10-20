@@ -16,10 +16,12 @@ import {
 } from "../styles/SignUpStyles.js";
 
 import { useDispatch, useSelector } from "react-redux";
-import { signUpUser } from "../redux/features/userSlice.js";
+import { signUpUser, clearErrors } from "../redux/features/userSlice.js";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const { errors } = useSelector((state)=>state.user)
 
@@ -41,6 +43,11 @@ function SignUp() {
   function handleSignUpSubmit(e) {
     e.preventDefault();
     dispatch(signUpUser(signupData))
+  }
+
+  function navigateToLogin(){
+    navigate("/login")
+    dispatch(clearErrors())
   }
 
   const showButton = (
@@ -104,7 +111,7 @@ function SignUp() {
 
         <LoginContainer>
           <span>
-            Have an Account? <LoginLink to="/">Log In</LoginLink>
+            Have an Account? <LoginLink onClick={navigateToLogin}>Log In</LoginLink>
           </span>
         </LoginContainer>
       </ContainerWrapper>

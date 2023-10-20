@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 
 // handles logging in. creates a session
 export const loginUser = createAsyncThunk("user/loginUser", async (loginData, thunkAPI) => {
@@ -65,6 +65,8 @@ export const getMe = createAsyncThunk("user/getMe", async (thunkAPI)=>{
     }
 });
 
+export const clearErrors = createAction("comment/clearErrors");
+
 const userSlice = createSlice({
     name: "user",
     initialState: {
@@ -128,6 +130,9 @@ const userSlice = createSlice({
             state.loading = false;
             state.user = null;
             state.errors = action.payload;
+        })
+        .addCase(clearErrors, (state) =>{
+            state.errors = []
         })
     }
 })
