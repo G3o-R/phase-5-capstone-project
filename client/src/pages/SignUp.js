@@ -106,7 +106,7 @@ function SignUp() {
               </FormGroup>
             <SignUpButton type="submit">Sign Up</SignUpButton>
           </Form>
-          {errors.map((error)=> <Error>{error}</Error>)}
+          {errors.map((error)=> <Error key={error}>{error}</Error>)}
         </SignUpContainer>
 
         <LoginContainer>

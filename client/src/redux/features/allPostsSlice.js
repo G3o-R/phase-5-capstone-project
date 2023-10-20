@@ -51,7 +51,6 @@ export const createPost = createAsyncThunk("posts/createPost", async (postData, 
         })
 
         if (!response.ok){
-            console.log("not okay")
             const errorMessage = await response.json()
             return thunkAPI.rejectWithValue(errorMessage.errors)
         }
