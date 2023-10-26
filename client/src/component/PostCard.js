@@ -86,7 +86,7 @@ function PostCard({ post }) {
                type="text" 
                value={comment} 
                name="comment" 
-               placeholder="Add a comment.." 
+               placeholder="Add a comment..." 
                onChange={handleChange} 
                />
                {comment.length > 0 ? <button type="submit" name="post-comment">Post</button>:null}

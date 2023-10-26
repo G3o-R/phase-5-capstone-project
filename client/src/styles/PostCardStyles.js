@@ -68,11 +68,14 @@ export const SeeCommentsButton = styled.div`
 
 export const AddCommentText = styled.form`
   cursor: pointer;
+  input{
+    border:none;
+    &:focus {
+      outline: none;
+    }
+  }
 `;
 
 export const ViewComments = styled.p`
   cursor: pointer
 `;
-/* export const AddCommentText = styled.form`
-cursor: pointer
-`; */
